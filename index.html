@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ant-Ara | Estrategia con Alma, Resultados con Disciplina</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/HrAjlBl.png">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&family=Lexend:wght@400;600;700&family=Rubik:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--teal-primary: #2F4F4F;
+--dark-gray: #333333;
+--white: #FFFFFF;
+--light-gray: #F5F5F5;
+--orange-accent: #D2691E;
+--green-accent: #4CAF50;
+--font-heading: 'Epilogue', sans-serif;
+--font-subheading: 'Lexend', sans-serif;
+--font-body: 'Lato', sans-serif;
+--font-italic: 'Rubik', sans-serif;
+}
+body {
+font-family: var(--font-body);
+color: var(--dark-gray);
+background-color: var(--white);
+line-height: 1.6;
+overflow-x: hidden;
+}
+/* HEADER */
+header {
+position: fixed;
+top: 0;
+width: 100%;
+background: linear-gradient(135deg, rgba(47, 79, 79, 0.95) 0%, rgba(76, 175, 80, 0.9) 100%);
+backdrop-filter: blur(10px);
+box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+z-index: 1000;
+padding: 0.5rem 0;
+}
+nav {
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 1rem;
+background: rgba(76, 175, 80, 0.2);
+padding: 0.8rem 1.5rem;
+border-radius: 50px;
+backdrop-filter: blur(5px);
+transition: all 0.3s;
+text-decoration: none;
+}
+.logo-container:hover {
+background: rgba(76, 175, 80, 0.4);
+transform: scale(1.05);
+}
+.logo-circle {
+width: 60px;
+height: 60px;
+background: var(--green-accent);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+.logo {
+height: 45px;
+filter: brightness(1.1);
+}
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+.logo-brand {
+font-family: var(--font-heading);
+font-size: 2.5rem;
+font-weight: 900;
+color: var(--white);
+line-height: 1;
+letter-spacing: -1px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.logo-tagline {
+font-family: var(--font-italic);
+font-style: italic;
+font-size: 0.85rem;
+color: var(--orange-accent);
+font-weight: 600;
+letter-spacing: 0.5px;
+margin-top: 0.2rem;
+}
+.menu-toggle {
+display: none;
+flex-direction: column;
+gap: 6px;
+background: var(--orange-accent);
+padding: 12px;
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.3s;
+border: none;
+}
+.menu-toggle:hover {
+background: var(--green-accent);
+transform: rotate(90deg);
+}
+.menu-toggle span {
+width: 28px;
+height: 3px;
+background: var(--white);
+border-radius: 2px;
+transition: all 0.3s;
+}
+.nav-links {
+display: flex;
+gap: 2rem;
+list-style: none;
+align-items: center;
+}
+.nav-links a {
+text-decoration: none;
+color: var(--white);
+font-weight: 700;
+font-family: var(--font-heading);
+transition: all 0.3s;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+position: relative;
+}
+.nav-links a::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+width: 0;
+height: 3px;
+background: var(--orange-accent);
+transition: all 0.3s;
+transform: translateX(-50%);
+}
+.nav-links a:hover {
+color: var(--orange-accent);
+}
+.nav-links a:hover::after {
+width: 80%;
+}
+.nav-academia {
+background: var(--orange-accent);
+color: var(--white) !important;
+padding: 0.8rem 1.8rem;
+border-radius: 25px;
+transition: all 0.3s;
+box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4);
+}
+.nav-academia:hover {
+background: var(--green-accent);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+}
+.nav-academia::after {
+display: none;
+}
+/* HERO CON ANIMACIÓN MEJORADA */
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+background: linear-gradient(135deg, var(--light-gray) 0%, #e8e8e8 100%);
+position: relative;
+padding: 8rem 2rem 4rem;
+overflow: hidden;
+margin-top: 80px;
+}
+.hero::before {
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+background-image: url('https://i.imgur.com/SKoVsSp.png');
+background-size: 600px;
+background-position: center;
+background-repeat: no-repeat;
+opacity: 0.03;
+pointer-events: none;
+}
+/* Animación ANT+ARA Mejorada - AMBOS VISIBLES AL FINAL */
+.logo-animation-container {
+margin-bottom: 3rem;
+position: relative;
+z-index: 2;
+}
+.unified-logo {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+}
+.logo-word {
+font-family: var(--font-heading);
+font-size: 8rem;
+font-weight: 900;
+line-height: 1;
+opacity: 0;
+transform: scale(0.5);
+transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.logo-word.ant {
+color: var(--orange-accent);
+}
+.logo-word.ara {
+color: var(--teal-primary);
+}
+.logo-word.visible {
+opacity: 1;
+transform: scale(1);
+}
+.logo-separator {
+width: 60px;
+height: 4px;
+background: linear-gradient(90deg, var(--orange-accent) 0%, var(--teal-primary) 100%);
+opacity: 0;
+transform: scaleX(0);
+transition: all 1s ease 1.8s;
+}
+.logo-separator.visible {
+opacity: 1;
+transform: scaleX(1);
+}
+.hero-content {
+max-width: 1000px;
+position: relative;
+z-index: 2;
+}
+.hero h1 {
+font-family: var(--font-heading);
+font-size: 3.5rem;
+font-weight: 900;
+color: var(--dark-gray);
+margin-bottom: 1.5rem;
+line-height: 1.2;
+}
+.hero-subtitle {
+font-size: 1.6rem;
+color: #555;
+margin-bottom: 2.5rem;
+font-weight: 300;
+line-height: 1.5;
+}
+.cta-primary {
+display: inline-block;
+padding: 1.3rem 3.5rem;
+background: var(--orange-accent);
+color: var(--white);
+text-decoration: none;
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 1.2rem;
+border-radius: 50px;
+transition: all 0.3s ease;
+box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+}
+.cta-primary:hover {
+background: var(--teal-primary);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(47, 79, 79, 0.4);
+}
+/* PROPUESTA DE VALOR */
+.value-proposition {
+background: var(--white);
+padding: 6rem 2rem;
+}
+.section-title {
+font-family: var(--font-heading);
+font-size: 3rem;
+color: var(--dark-gray);
+text-align: center;
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.section-subtitle {
+font-size: 1.3rem;
+text-align: center;
+color: #666;
+margin-bottom: 4rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+}
+.value-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+}
+.value-card {
+text-align: center;
+padding: 2rem;
+border-radius: 20px;
+transition: all 0.3s;
+}
+.value-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+.value-icon {
+width: 80px;
+height: 80px;
+margin: 0 auto 1.5rem;
+background: linear-gradient(135deg, var(--teal-primary) 0%, var(--green-accent) 100%);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--white);
+box-shadow: 0 8px 20px rgba(47, 79, 79, 0.3);
+}
+.value-card h3 {
+font-family: var(--font-subheading);
+font-size: 1.5rem;
+color: var(--teal-primary);
+margin-bottom: 1rem;
+font-weight: 700;
+}
+.value-card p {
+font-size: 1.1rem;
+line-height: 1.8;
+color: #555;
+}
+/* PROGRAMA DESTACADO */
+.featured-program {
+background: linear-gradient(135deg, var(--teal-primary) 0%, #1a3333 100%);
+padding: 6rem 2rem;
+color: var(--white);
+}
+.featured-content {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+.featured-text h2 {
+font-family: var(--font-heading);
+font-size: 3rem;
+margin-bottom: 1rem;
+font-weight: 900;
+}
+.featured-tagline {
+font-family: var(--font-italic);
+font-style: italic;
+font-size: 1.4rem;
+margin-bottom: 2rem;
+opacity: 0.95;
+}
+.featured-description {
+font-size: 1.2rem;
+line-height: 1.8;
+margin-bottom: 2rem;
+}
+.featured-stats {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+margin-bottom: 2rem;
+}
+.stat-item {
+background: rgba(255,255,255,0.1);
+padding: 1.5rem;
+border-radius: 15px;
+backdrop-filter: blur(10px);
+}
+.stat-number {
+font-family: var(--font-heading);
+font-size: 2.5rem;
+font-weight: 900;
+display: block;
+margin-bottom: 0.5rem;
+}
+.stat-label {
+font-size: 0.95rem;
+opacity: 0.9;
+}
+.featured-visual {
+position: relative;
+}
+.featured-image {
+width: 100%;
+border-radius: 20px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.cta-secondary {
+display: inline-block;
+padding: 1.2rem 3rem;
+background: var(--white);
+color: var(--teal-primary);
+text-decoration: none;
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 1.1rem;
+border-radius: 50px;
+transition: all 0.3s;
+box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+}
+.cta-secondary:hover {
+background: var(--orange-accent);
+color: var(--white);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
+}
+/* PROYECTOS */
+.proyectos-section {
+background: var(--light-gray);
+padding: 6rem 2rem;
+}
+.proyectos-grid {
+max-width: 1300px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 3rem;
+}
+.proyecto-card {
+background: var(--white);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+transition: all 0.3s;
+}
+.proyecto-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+.proyecto-image {
+width: 100%;
+height: 280px;
+object-fit: cover;
+}
+.proyecto-content {
+padding: 2rem;
+}
+.proyecto-card h3 {
+font-family: var(--font-heading);
+font-size: 1.8rem;
+color: var(--teal-primary);
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.proyecto-tag {
+display: inline-block;
+background: var(--orange-accent);
+color: var(--white);
+padding: 0.4rem 1rem;
+border-radius: 20px;
+font-size: 0.85rem;
+font-weight: 600;
+margin-bottom: 1rem;
+}
+.proyecto-card p {
+font-size: 1.05rem;
+line-height: 1.8;
+color: #555;
+margin-bottom: 1.5rem;
+}
+.proyecto-link {
+display: inline-block;
+color: var(--orange-accent);
+font-weight: 700;
+text-decoration: none;
+transition: all 0.3s;
+}
+.proyecto-link:hover {
+color: var(--teal-primary);
+transform: translateX(5px);
+}
+/* CAROUSEL */
+.carousel-container {
+max-width: 1100px;
+margin: 4rem auto 0;
+position: relative;
+}
+.carousel {
+overflow: hidden;
+border-radius: 20px;
+}
+.carousel-track {
+display: flex;
+transition: transform 0.5s ease;
+}
+.carousel-card {
+min-width: 100%;
+background: var(--white);
+padding: 3rem;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.carousel-card img {
+width: 100%;
+height: 450px;
+object-fit: cover;
+border-radius: 15px;
+margin-bottom: 2rem;
+box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.carousel-card h3 {
+font-family: var(--font-heading);
+font-size: 2rem;
+color: var(--teal-primary);
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.carousel-card p {
+font-size: 1.15rem;
+line-height: 1.8;
+color: #555;
+}
+.carousel-controls {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin-top: 2rem;
+}
+.carousel-btn {
+width: 55px;
+height: 55px;
+border-radius: 50%;
+background: var(--orange-accent);
+color: var(--white);
+border: none;
+cursor: pointer;
+font-size: 1.3rem;
+transition: all 0.3s;
+box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+}
+.carousel-btn:hover {
+background: var(--teal-primary);
+transform: scale(1.15);
+box-shadow: 0 6px 20px rgba(47, 79, 79, 0.4);
+}
+.carousel-dots {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 1rem;
+}
+.dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: #ccc;
+cursor: pointer;
+transition: all 0.3s;
+}
+.dot.active {
+background: var(--orange-accent);
+width: 35px;
+border-radius: 6px;
+}
+/* SERVICIOS */
+.servicios-section {
+background: var(--white);
+padding: 6rem 2rem;
+}
+.servicios-grid {
+max-width: 1300px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 2.5rem;
+}
+.servicio-card {
+background: var(--light-gray);
+padding: 3rem;
+border-radius: 20px;
+transition: all 0.3s;
+border: 3px solid transparent;
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+.servicio-card:hover {
+transform: translateY(-8px);
+border-color: var(--orange-accent);
+box-shadow: 0 12px 35px rgba(210, 105, 30, 0.25);
+}
+.servicio-icon {
+font-size: 3.5rem;
+color: var(--orange-accent);
+margin-bottom: 1.5rem;
+}
+.servicio-card h3 {
+font-family: var(--font-heading);
+font-size: 1.8rem;
+color: var(--dark-gray);
+margin-bottom: 1rem;
+font-weight: 800;
+line-height: 1.3;
+}
+.servicio-card p {
+font-size: 1.05rem;
+line-height: 1.8;
+margin-bottom: 1.5rem;
+color: #555;
+}
+.servicio-card img {
+width: 100%;
+height: 280px;
+object-fit: cover;
+border-radius: 12px;
+margin-bottom: 1.5rem;
+box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.cta-tertiary {
+display: inline-block;
+padding: 1rem 2.2rem;
+background: var(--teal-primary);
+color: var(--white);
+text-decoration: none;
+font-family: var(--font-heading);
+font-weight: 700;
+border-radius: 30px;
+transition: all 0.3s;
+}
+.cta-tertiary:hover {
+background: var(--orange-accent);
+transform: translateX(5px);
+box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+}
+/* EQUIPO */
+.equipo-section {
+background: linear-gradient(135deg, var(--teal-primary) 0%, #1a3333 100%);
+padding: 6rem 2rem;
+color: var(--white);
+}
+.equipo-section .section-title {
+color: var(--white);
+}
+.equipo-grid {
+max-width: 900px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 4rem;
+}
+.team-member {
+text-align: center;
+}
+.team-member img {
+width: 200px;
+height: 200px;
+object-fit: cover;
+object-position: center top;
+border-radius: 50%;
+border: 5px solid var(--orange-accent);
+margin-bottom: 1.5rem;
+transition: all 0.3s;
+box-shadow: 0 8px 25px rgba(210, 105, 30, 0.3);
+}
+.team-member img:hover {
+transform: scale(1.08);
+border-color: var(--white);
+box-shadow: 0 12px 35px rgba(255,255,255,0.3);
+}
+.team-member h3 {
+font-family: var(--font-heading);
+font-size: 2rem;
+margin-bottom: 0.8rem;
+font-weight: 800;
+}
+.team-member p {
+font-size: 1.1rem;
+opacity: 0.9;
+line-height: 1.6;
+margin-bottom: 1.5rem;
+}
+.social-links {
+display: flex;
+gap: 1rem;
+justify-content: center;
+}
+.social-links a {
+width: 48px;
+height: 48px;
+background: var(--orange-accent);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--white);
+font-size: 1.2rem;
+transition: all 0.3s;
+text-decoration: none;
+}
+.social-links a:hover {
+background: var(--green-accent);
+transform: translateY(-4px);
+box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+/* FOOTER */
+footer {
+background: var(--dark-gray);
+color: var(--white);
+padding: 3rem 2rem 1rem;
+}
+.footer-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 3rem;
+margin-bottom: 2rem;
+}
+.footer-section h3 {
+font-family: var(--font-heading);
+font-size: 1.4rem;
+margin-bottom: 1rem;
+color: var(--orange-accent);
+font-weight: 700;
+}
+.footer-section p,
+.footer-section a {
+color: rgba(255,255,255,0.8);
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s;
+}
+.footer-section a:hover {
+color: var(--orange-accent);
+}
+.footer-bottom {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255,255,255,0.1);
+color: rgba(255,255,255,0.6);
+}
+/* RESPONSIVE */
+@media (max-width: 968px) {
+.nav-links {
+position: fixed;
+top: 80px;
+left: -100%;
+width: 100%;
+height: calc(100vh - 80px);
+background: linear-gradient(135deg, rgba(47, 79, 79, 0.98) 0%, rgba(76, 175, 80, 0.95) 100%);
+flex-direction: column;
+justify-content: center;
+align-items: center;
+transition: left 0.4s ease;
+padding: 2rem;
+}
+.nav-links.active {
+left: 0;
+}
+.menu-toggle {
+display: flex;
+}
+.logo-word {
+font-size: 4.5rem;
+}
+.hero h1 {
+font-size: 2.5rem;
+}
+.section-title {
+font-size: 2.2rem;
+}
+.featured-content {
+grid-template-columns: 1fr;
+}
+.servicios-grid, .proyectos-grid {
+grid-template-columns: 1fr;
+}
+.logo-brand {
+font-size: 2rem;
+}
+}
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<nav>
+<a href="index.html" class="logo-container">
+<div class="logo-circle">
+<img src="https://i.imgur.com/HrAjlBl.png" alt="Ant-Ara Logo" class="logo">
+</div>
+<div class="logo-text">
+<span class="logo-brand">ANT-ARA</span>
+<span class="logo-tagline">Estrategia con Alma, Resultados con Disciplina</span>
+</div>
+</a>
+<button class="menu-toggle" id="menuToggle" aria-label="Menú">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="index.html">Inicio</a></li>
+<li><a href="#proyectos">Proyectos</a></li>
+<li><a href="programas.html">Programas</a></li>
+<li><a href="#equipo">Equipo</a></li>
+<li><a href="#contacto">Contacto</a></li>
+<li><a href="champion-ia.html" class="nav-academia">⭐ Champion IA</a></li>
+</ul>
+</nav>
+</header>
+<!-- HERO CON ANIMACIÓN MEJORADA -->
+<section class="hero">
+<div class="hero-content">
+<div class="logo-animation-container">
+<div class="unified-logo">
+<span class="logo-word ant" id="antWord">ANT</span>
+<div class="logo-separator" id="logoSeparator"></div>
+<span class="logo-word ara" id="araWord">ARA</span>
+</div>
+</div>
+<h1>Estrategia con Alma, Resultados con Disciplina</h1>
+<p class="hero-subtitle">
+Deje de navegar el caos. Creamos el espacio estratégico que su legado necesita para crecer sin desviarse.
+</p>
+<a href="#contacto" class="cta-primary">Agende su Diagnóstico Estratégico</a>
+</div>
+</section>
+<!-- PROPUESTA DE VALOR -->
+<section class="value-proposition">
+<h2 class="section-title">¿Por Qué Elegir Ant-Ara?</h2>
+<p class="section-subtitle">Tres pilares que nos diferencian en consultoría estratégica</p>
+<div class="value-grid">
+<div class="value-card">
+<div class="value-icon">
+<i class="fas fa-brain"></i>
+</div>
+<h3>Metodología "Alma y Disciplina"</h3>
+<p>Nuestra metodología patentada combina profundidad analítica (Alma) con ejecución impecable (Disciplina). No vendemos teoría, ejecutamos resultados.</p>
+</div>
+<div class="value-card">
+<div class="value-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<h3>Protección del Legado</h3>
+            <p>Diseñamos estrategias que protegen su patrimonio y legado empresarial mientras impulsan la innovación. Especializados en PYMEs y empresas familiares.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Resultados Medibles</h3>
+            <p>Reducción promedio del 40% en costos operativos, 50% menos retrasos en proyectos, y 65% de incremento en leads calificados. Inversión con retorno garantizado.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROGRAMA DESTACADO -->
+<section class="featured-program">
+    <div class="featured-content">
+        <div class="featured-text">
+            <h2>Programa Insignia: Champion IA</h2>
+            <p class="featured-tagline">Domina la IA y Multiplica Tu Productividad en 6 Semanas</p>
+            <p class="featured-description">
+                El programa de formación diseñado para convertirte en el referente de IA en tu equipo,
+                sin necesidad de saber programar. Aprende ChatGPT, Microsoft Copilot y más.
+            </p>
+            <div class="featured-stats">
+                <div class="stat-item">
+                    <span class="stat-number">30h</span>
+                    <span class="stat-label">Contenido práctico</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Módulos intensivos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Certificaciones incluidas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Aplicable al trabajo</span>
+                </div>
+            </div>
+            <a href="champion-ia.html" class="cta-secondary">Conocer el Programa Champion IA</a>
+        </div>
+        <div class="featured-visual">
+            <img src="https://i.imgur.com/RHwlADm.png" alt="Programa Champion IA" class="featured-image">
+        </div>
+    </div>
+</section>
+
+<!-- PROYECTOS -->
+<section class="proyectos-section" id="proyectos">
+    <h2 class="section-title">Portafolio: Casos de Éxito</h2>
+    <p class="section-subtitle">
+        Transformaciones reales con resultados medibles. Cada proyecto demuestra nuestra metodología en acción.
+    </p>
+    <div class="proyectos-grid">
+        <!-- Proyecto 1: TOLIVIA -->
+        <div class="proyecto-card">
+            <img src="https://i.imgur.com/RHwlADm.png" alt="Tolivia - Universo Digital" class="proyecto-image">
+            <div class="proyecto-content">
+                <span class="proyecto-tag">Transformación Digital</span>
+                <h3>TOLIVIA: Universo Digital para Seguros</h3>
+                <p>
+                    Creamos un ecosistema digital completo: cotizador automático en línea, asistente virtual 24/7 con IA, 
+                    y sistema de autogestión para clientes. Integración WhatsApp, web y backend.
+                </p>
+                <p><strong>Resultado:</strong> 40% reducción en costos operativos, disponibilidad 24/7.</p>
+                <a href="https://tolivia.com" target="_blank" class="proyecto-link">
+                    Ver Proyecto <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Proyecto 2: DKORANDO -->
+        <div class="proyecto-card">
+            <img src="https://i.imgur.com/aUW3ozt.png" alt="DKorando - Estrategia Comercial" class="proyecto-image">
+            <div class="proyecto-content">
+                <span class="proyecto-tag">Gestión Comercial</span>
+                <h3>DKORANDO: Aceleración de Ventas</h3>
+                <p>
+                    Arquitectura comercial completa con KPIs digitales, funnel de conversión optimizado, 
+                    y paquete de 36 publicaciones estratégicas en 3 meses. Metodología de seguimiento y cierre.
+                </p>
+                <p><strong>Resultado:</strong> 65% incremento en leads calificados en el primer trimestre.</p>
+                <a href="https://dkorando.com" target="_blank" class="proyecto-link">
+                    Ver Proyecto <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Proyecto 3: COFFEE PARTIES -->
+        <div class="proyecto-card">
+            <img src="https://i.imgur.com/lLFSaXf.png" alt="Coffee Parties - Gestión de Eventos" class="proyecto-image">
+            <div class="proyecto-content">
+                <span class="proyecto-tag">Project Management</span>
+                <h3>COFFEE PARTIES: Gestión y Diseño</h3>
+                <p>
+                    Implementación de sistema de gestión de proyectos para eventos corporativos. 
+                    Automatización de cotizaciones, diseño de experiencias personalizadas, y tracking en tiempo real.
+                </p>
+                <p><strong>Resultado:</strong> 50% reducción en tiempo de planificación, 30% aumento en satisfacción del cliente.</p>
+                <a href="#contacto" class="proyecto-link">
+                    Solicitar Caso de Estudio <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CASOS REALES CAROUSEL -->
+<section class="servicios-section">
+    <h2 class="section-title">Casos Reales: Transformaciones que Generan Valor</h2>
+    <p class="section-subtitle">
+        No vendemos teoría. Mostramos <strong>resultados concretos</strong> de nuestra metodología aplicada.
+    </p>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Card 1 -->
+                <div class="carousel-card">
+                    <img src="https://i.imgur.com/RHwlADm.png" alt="Transformación Digital Seguros">
+                    <h3>Transformación Digital en Seguros sin Contacto Humano</h3>
+                    <p>
+                        <strong>Cliente:</strong> Tolivia (Sector Seguros)<br><br>
+                        Implementamos cotizador automático y asistente virtual 24/7 con IA.
+                        <strong>Resultado:</strong> 40% reducción en costos operativos.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="carousel-card">
+                    <img src="https://i.imgur.com/aUW3ozt.png" alt="Aceleración Ventas">
+                    <h3>Aceleración de Ventas con Estrategia Comercial Integral</h3>
+                    <p>
+                        <strong>Cliente:</strong> DKorando (Consultoría)<br><br>
+                        Arquitectura comercial completa con KPIs digitales y funnel optimizado.
+                        <strong>Resultado:</strong> 65% incremento en leads calificados.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="carousel-card">
+                    <img src="https://i.imgur.com/lLFSaXf.png" alt="Project Management">
+                    <h3>Metodología Ant-Ara: Ejecución que Protege el Legado</h3>
+                    <p>
+                        <strong>Enfoque:</strong> Project Management Estratégico<br><br>
+                        Metodología "Alma y Disciplina" con control de cambios riguroso.
+                        <strong>Resultado:</strong> 50% menos retrasos, 100% alineación estratégica.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn" id="nextBtn" aria-label="Siguiente">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios-section" style="background: var(--light-gray);">
+    <h2 class="section-title">Nuestras Soluciones: Consultoría a la Medida</h2>
+    <div class="servicios-grid">
+        <!-- Servicio 1 -->
+        <div class="servicio-card">
+            <div class="servicio-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Gestión de Riesgos y Cumplimiento</h3>
+            <img src="https://i.imgur.com/EzGmg2A.png" alt="Gestión de Riesgos">
+            <p>
+                Blindamos su patrimonio digital. Cuidamos el activo más valioso: su información y su reputación.
+                Más que auditorías, ofrecemos ciberresponsabilidad estratégica.
+            </p>
+            <a href="#contacto" class="cta-tertiary">Blinde su Empresa</a>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="servicio-card">
+            <div class="servicio-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h3>Optimización de Procesos con IA</h3>
+            <img src="https://i.imgur.com/UgsB5tM.png" alt="Optimización IA">
+            <p>
+                Automatización e IA real para hacer más con menos fricción. Liberamos tiempo, 
+                reducimos errores y mejoramos productividad sin deshumanizar la experiencia.
+            </p>
+            <a href="#contacto" class="cta-tertiary">Automatice con IA</a>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="servicio-card" style="border: 3px solid var(--orange-accent);">
+            <div class="servicio-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Academia Ant-Ara: Programas de IA</h3>
+            <p>
+                Programas de formación práctica con certificación internacional. 
+                Champion IA, Automatización, Gestión de Proyectos con IA y más.
+            </p>
+            <a href="programas.html" class="cta-tertiary" style="background: var(--orange-accent);">Ver 6 Programas</a>
+        </div>
+    </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="equipo-section" id="equipo">
+    <h2 class="section-title">Los Estrategas detrás de Ant-Ara</h2>
+    <div class="equipo-grid">
+        <!-- Jorge -->
+        <div class="team-member">
+            <img src="https://i.imgur.com/TiUQN09.jpeg" alt="Jorge Luis" style="object-position: center 20%;">
+            <h3>Jorge Luis</h3>
+            <p>
+                Estratega Comercial & Innovación<br>
+                Especialista en Gestión Comercial, Coaching y Transformación de Equipos
+            </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/jorgegonzalezgua" target="_blank" aria-label="LinkedIn Jorge">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Alejandro -->
+        <div class="team-member">
+            <img src="https://i.imgur.com/P5TMXOz.jpeg" alt="Alejandro Ortega" style="object-position: center 15%;">
+            <h3>Alejandro Ortega</h3>
+            <p>
+                Estratega de Marca & Transformación Digital<br>
+                Experto en IA Aplicada, Innovación y Productividad Empresarial
+            </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/innovar-con-alejadro" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/innovarconalejandro" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/innovarconAlex" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://t.me/ant_ara_productividad" target="_blank" aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Ant-Ara</h3>
+            <p>Estrategia con Alma</p>
+            <p>Resultados con Disciplina</p>
+            <div class="social-links" style="margin-top: 1rem;">
+                <a href="https://www.linkedin.com/company/ant-ara" target="_blank" aria-label="LinkedIn Ant-Ara">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p><i class="fas fa-envelope"></i> contacto@ant-ara.com</p>
+            <p><i class="fas fa-envelope"></i> alejandroortegaguerra@gmail.com</p>
+            <p><i class="fas fa-paper-plane"></i> @productividadconia</p>
+        </div>
+        <div class="footer-section">
+            <h3>Navegación</h3>
+            <a href="index.html">Inicio</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="programas.html">Programas</a>
+            <a href="#equipo">Equipo</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="footer-section">
+            <h3>Sitios Web</h3>
+            <a href="https://ant-ara.com" target="_blank">ant-ara.com</a>
+            <a href="https://innovarconalejandro.com" target="_blank">innovarconalejandro.com</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Ant-Ara. Todos los derechos reservados. | Diseñado con Alma y Disciplina</p>
+    </div>
+</footer>
+
+<script>
+// Menú Hamburguesa
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+// Animación ANT+ARA mejorada - AMBOS ELEMENTOS VISIBLES AL FINAL
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('antWord').classList.add('visible');
+    }, 300);
+    
+    setTimeout(() => {
+        document.getElementById('araWord').classList.add('visible');
+    }, 800);
+    
+    setTimeout(() => {
+        document.getElementById('logoSeparator').classList.add('visible');
+    }, 1400);
+});
+
+// Carousel
+const track = document.getElementById('carouselTrack');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dotsContainer = document.getElementById('carouselDots');
+const cards = document.querySelectorAll('.carousel-card');
+let currentIndex = 0;
+const totalCards = cards.length;
+
+// Create dots
+for (let i = 0; i < totalCards; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+}
+
+const dots = document.querySelectorAll('.dot');
+
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+    });
+}
+
+function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+}
+
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    updateCarousel();
+});
+
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCarousel();
+});
+
+// Auto-advance carousel
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCarousel();
+}, 6000);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programas de Formación en IA | Ant-Ara</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/HrAjlBl.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&family=Lexend:wght@400;600;700&family=Rubik:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--primary: #1E8484;
+--dark: #111827;
+--accent: #0F755E;
+--bright: #10B881;
+--light-bg: #F3F4F6;
+--white: #FFFFFF;
+--orange: #D2691E;
+--font-heading: 'Epilogue', sans-serif;
+--font-subheading: 'Lexend', sans-serif;
+--font-body: 'Lato', sans-serif;
+--font-italic: 'Rubik', sans-serif;
+}
+body {
+font-family: var(--font-body);
+color: var(--dark);
+background-color: var(--white);
+line-height: 1.6;
+overflow-x: hidden;
+}
+/* HEADER (igual que index) */
+header {
+position: fixed;
+top: 0;
+width: 100%;
+background: linear-gradient(135deg, rgba(30, 132, 132, 0.95) 0%, rgba(15, 117, 94, 0.9) 100%);
+backdrop-filter: blur(10px);
+box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+z-index: 1000;
+padding: 0.5rem 0;
+}
+nav {
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 1rem;
+background: rgba(16, 184, 129, 0.2);
+padding: 0.8rem 1.5rem;
+border-radius: 50px;
+backdrop-filter: blur(5px);
+transition: all 0.3s;
+text-decoration: none;
+}
+.logo-container:hover {
+background: rgba(16, 184, 129, 0.4);
+transform: scale(1.05);
+}
+.logo-circle {
+width: 60px;
+height: 60px;
+background: var(--bright);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 15px rgba(16, 184, 129, 0.4);
+}
+.logo {
+height: 45px;
+filter: brightness(1.1);
+}
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+.logo-brand {
+font-family: var(--font-heading);
+font-size: 2.5rem;
+font-weight: 900;
+color: var(--white);
+line-height: 1;
+letter-spacing: -1px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.logo-tagline {
+font-family: var(--font-italic);
+font-style: italic;
+font-size: 0.85rem;
+color: var(--orange);
+font-weight: 600;
+letter-spacing: 0.5px;
+margin-top: 0.2rem;
+}
+.menu-toggle {
+display: none;
+flex-direction: column;
+gap: 6px;
+background: var(--orange);
+padding: 12px;
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.3s;
+border: none;
+}
+.nav-links {
+display: flex;
+gap: 2rem;
+list-style: none;
+align-items: center;
+}
+.nav-links a {
+text-decoration: none;
+color: var(--white);
+font-weight: 700;
+font-family: var(--font-heading);
+transition: all 0.3s;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+position: relative;
+}
+.nav-links a:hover {
+color: var(--orange);
+}
+.nav-champion {
+background: var(--orange);
+color: var(--white) !important;
+padding: 0.8rem 1.8rem;
+border-radius: 25px;
+transition: all 0.3s;
+box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4);
+}
+/* HERO PROGRAMAS */
+.hero-programas {
+min-height: 60vh;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+color: var(--white);
+padding: 10rem 2rem 4rem;
+}
+.hero-programas h1 {
+font-family: var(--font-heading);
+font-size: 4rem;
+font-weight: 900;
+margin-bottom: 1.5rem;
+}
+.hero-programas p {
+font-size: 1.5rem;
+max-width: 800px;
+margin: 0 auto;
+}
+/* RUTAS CERTIFICACIÓN */
+.rutas-section {
+padding: 6rem 2rem;
+background: var(--white);
+}
+.section-title {
+font-family: var(--font-heading);
+font-size: 3rem;
+color: var(--dark);
+text-align: center;
+margin-bottom: 1.5rem;
+font-weight: 800;
+}
+.section-subtitle {
+font-size: 1.3rem;
+text-align: center;
+color: #666;
+margin-bottom: 4rem;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+}
+.rutas-grid {
+max-width: 900px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 3rem;
+}
+.ruta-card {
+background: var(--white);
+border-radius: 20px;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+border: 3px solid transparent;
+transition: all 0.3s;
+}
+.ruta-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+.ruta-card.popular {
+border-color: var(--orange);
+}
+.popular-badge {
+background: var(--orange);
+color: var(--white);
+padding: 0.5rem 1.5rem;
+border-radius: 20px;
+font-weight: 700;
+display: inline-block;
+margin-bottom: 1.5rem;
+}
+.ruta-icon {
+width: 80px;
+height: 80px;
+margin: 0 auto 1.5rem;
+background: linear-gradient(135deg, var(--primary) 0%, var(--bright) 100%);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--white);
+}
+.ruta-card h3 {
+font-family: var(--font-heading);
+font-size: 2rem;
+color: var(--dark);
+margin-bottom: 0.5rem;
+text-align: center;
+font-weight: 800;
+}
+.ruta-description {
+text-align: center;
+color: #666;
+margin-bottom: 2rem;
+font-size: 1.1rem;
+}
+.precio {
+text-align: center;
+font-size: 3rem;
+font-weight: 900;
+color: var(--primary);
+margin-bottom: 1.5rem;
+}
+.precio span {
+font-size: 1.2rem;
+color: #666;
+font-weight: 400;
+}
+.features-list {
+list-style: none;
+margin-bottom: 2rem;
+}
+.features-list li {
+padding: 0.8rem 0;
+border-bottom: 1px solid #eee;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+.features-list i {
+color: var(--bright);
+font-size: 1.2rem;
+}
+.cta-ruta {
+display: block;
+width: 100%;
+padding: 1.2rem;
+background: var(--primary);
+color: var(--white);
+text-align: center;
+text-decoration: none;
+font-family: var(--font-heading);
+font-weight: 700;
+border-radius: 30px;
+transition: all 0.3s;
+font-size: 1.1rem;
+}
+.cta-ruta:hover {
+background: var(--orange);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
+}
+/* CATÁLOGO PROGRAMAS */
+.catalogo-section {
+padding: 6rem 2rem;
+background: var(--light-bg);
+}
+.programas-grid {
+max-width: 1300px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 3rem;
+}
+.programa-card {
+background: var(--white);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+transition: all 0.3s;
+}
+.programa-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+.programa-header {
+padding: 2rem;
+display: flex;
+align-items: center;
+gap: 1.5rem;
+border-bottom: 3px solid var(--light-bg);
+}
+.programa-icon {
+width: 70px;
+height: 70px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: var(--white);
+flex-shrink: 0;
+}
+.programa-header h3 {
+font-family: var(--font-heading);
+font-size: 1.5rem;
+color: var(--dark);
+font-weight: 800;
+line-height: 1.3;
+}
+.programa-cert {
+font-size: 0.9rem;
+color: #666;
+}
+.programa-body {
+padding: 2rem;
+}
+.programa-body p {
+color: #555;
+line-height: 1.8;
+margin-bottom: 1.5rem;
+font-size: 1.05rem;
+}
+.programa-actions {
+display: flex;
+gap: 1rem;
+}
+.btn-detalles {
+flex: 1;
+padding: 1rem;
+background: var(--primary);
+color: var(--white);
+text-align: center;
+text-decoration: none;
+font-weight: 700;
+border-radius: 10px;
+transition: all 0.3s;
+}
+.btn-detalles:hover {
+background: var(--accent);
+transform: translateY(-2px);
+}
+.btn-inscribir {
+flex: 1;
+padding: 1rem;
+border: 2px solid var(--primary);
+color: var(--primary);
+text-align: center;
+text-decoration: none;
+font-weight: 700;
+border-radius: 10px;
+transition: all 0.3s;
+}
+.btn-inscribir:hover {
+background: var(--primary);
+color: var(--white);
+}
+/* NIVELES CERTIFICACIÓN */
+.niveles-section {
+padding: 6rem 2rem;
+background: var(--white);
+}
+.niveles-grid {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+}
+.nivel-card {
+background: var(--light-bg);
+border-radius: 20px;
+padding: 3rem 2rem;
+text-align: center;
+transition: all 0.3s;
+border: 3px solid transparent;
+}
+.nivel-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+.nivel-card.destacado {
+border-color: var(--primary);
+}
+.nivel-icon {
+width: 90px;
+height: 90px;
+margin: 0 auto 1.5rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2.5rem;
+color: var(--white);
+}
+.nivel-card h3 {
+font-family: var(--font-heading);
+font-size: 2rem;
+color: var(--dark);
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.nivel-card p {
+color: #666;
+margin-bottom: 1.5rem;
+line-height: 1.8;
+}
+.nivel-badge {
+background: var(--primary);
+color: var(--white);
+padding: 1rem 1.5rem;
+border-radius: 15px;
+font-weight: 700;
+font-size: 1.1rem;
+}
+/* MÉTODOS PAGO */
+.pagos-section {
+padding: 6rem 2rem;
+background: var(--light-bg);
+text-align: center;
+}
+.payment-logos {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 3rem;
+flex-wrap: wrap;
+margin-top: 3rem;
+}
+.payment-logo {
+background: var(--white);
+padding: 1.5rem 2.5rem;
+border-radius: 15px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+font-weight: 700;
+font-size: 1.2rem;
+transition: all 0.3s;
+}
+.payment-logo:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.paypal { color: #003087; }
+.apple { color: #000; }
+.google { color: #4285F4; }
+.cards { color: #1A1F71; }
+/* FOOTER */
+footer {
+background: var(--dark);
+color: var(--white);
+padding: 3rem 2rem 1rem;
+}
+.footer-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 3rem;
+margin-bottom: 2rem;
+}
+.footer-section h3 {
+font-family: var(--font-heading);
+font-size: 1.4rem;
+margin-bottom: 1rem;
+color: var(--orange);
+font-weight: 700;
+}
+.footer-section p,
+.footer-section a {
+color: rgba(255,255,255,0.8);
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s;
+}
+.footer-section a:hover {
+color: var(--orange);
+}
+.footer-bottom {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255,255,255,0.1);
+color: rgba(255,255,255,0.6);
+}
+/* RESPONSIVE */
+@media (max-width: 968px) {
+.nav-links {
+position: fixed;
+top: 80px;
+left: -100%;
+width: 100%;
+height: calc(100vh - 80px);
+background: linear-gradient(135deg, rgba(30, 132, 132, 0.98) 0%, rgba(15, 117, 94, 0.95) 100%);
+flex-direction: column;
+justify-content: center;
+align-items: center;
+transition: left 0.4s ease;
+padding: 2rem;
+}
+.nav-links.active {
+left: 0;
+}
+.menu-toggle {
+display: flex;
+}
+.hero-programas h1 {
+font-size: 2.8rem;
+}
+.section-title {
+font-size: 2.2rem;
+}
+.programas-grid, .rutas-grid, .niveles-grid {
+grid-template-columns: 1fr;
+}
+.logo-brand {
+font-size: 2rem;
+}
+}
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<nav>
+<a href="index.html" class="logo-container">
+<div class="logo-circle">
+<img src="https://i.imgur.com/HrAjlBl.png" alt="Ant-Ara Logo" class="logo">
+</div>
+<div class="logo-text">
+<span class="logo-brand">ANT-ARA</span>
+<span class="logo-tagline">IA Práctica, Productividad Real</span>
+</div>
+</a>
+<button class="menu-toggle" id="menuToggle" aria-label="Menú">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="index.html">Inicio</a></li>
+<li><a href="programas.html">Programas</a></li>
+<li><a href="index.html#equipo">Nosotros</a></li>
+<li><a href="#contacto">Contacto</a></li>
+<li><a href="champion-ia.html" class="nav-champion">⭐ Champion IA</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-programas">
+<div class="container">
+<h1>Aumenta tu Productividad Profesional con IA</h1>
+<p>Certifícate en las tecnologías más demandadas del mercado y transforma tu carrera profesional</p>
+</div>
+</section>
+
+<!-- RUTAS DE CERTIFICACIÓN -->
+<section class="rutas-section">
+<h2 class="section-title">Rutas de Certificación</h2>
+<p class="section-subtitle">Elige el camino que mejor se adapte a tus objetivos profesionales</p>
+<div class="rutas-grid">
+<!-- Ruta Esencial -->
+<div class="ruta-card">
+<div class="ruta-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--bright) 100%);">
+<i class="fas fa-star"></i>
+</div>
+<h3>Programa Esencial</h3>
+<p class="ruta-description">IA & Productividad Fundamental</p>
+<div class="precio">$200 <span>USD</span></div>
+<ul class="features-list">
+<li><i class="fas fa-check"></i> Fundamentos de IA aplicada</li>
+<li><i class="fas fa-check"></i> Herramientas de productividad</li>
+<li><i class="fas fa-check"></i> Certificación incluida</li>
+<li><i class="fas fa-check"></i> Acceso 6 meses</li>
+</ul>
+<a href="champion-ia.html" class="cta-ruta">Comenzar Ahora</a>
+</div>
+
+<!-- Ruta Premium -->
+<div class="ruta-card popular">
+<span class="popular-badge">⭐ RECOMENDADO</span>
+<div class="ruta-icon" style="background: linear-gradient(135deg, var(--orange) 0%, #E17055 100%);">
+<i class="fas fa-crown"></i>
+</div>
+<h3>Programa Premium</h3>
+<p class="ruta-description">IA Avanzada + Gestión de Proyectos</p>
+<div class="precio">$350 <span>USD</span></div>
+<ul class="features-list">
+<li><i class="fas fa-check"></i> Todo lo del programa esencial</li>
+<li><i class="fas fa-check"></i> Gestión avanzada de proyectos</li>
+<li><i class="fas fa-check"></i> Metodologías ágiles</li>
+<li><i class="fas fa-check"></i> 2 Certificaciones internacionales</li>
+<li><i class="fas fa-check"></i> Mentoría personalizada</li>
+<li><i class="fas fa-check"></i> Acceso de por vida</li>
+</ul>
+<a href="champion-ia.html" class="cta-ruta" style="background: var(--orange);">Comenzar Ahora</a>
+</div>
+</div>
+</section>
+
+<!-- CATÁLOGO DE PROGRAMAS -->
+<section class="catalogo-section">
+<h2 class="section-title">Catálogo de Programas</h2>
+<p class="section-subtitle">Especialízate en las áreas más demandadas del mercado</p>
+<div class="programas-grid">
+<!-- Programa 1: AI Fundamentals -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #0077B6;">
+<i class="fas fa-brain"></i>
+</div>
+<div>
+<h3>Champion IA</h3>
+<p class="programa-cert">AIFPC®</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Domina las herramientas de IA para disparar tu productividad diaria.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+
+<!-- Programa 2: Generative AI -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #FF4778;">
+<i class="fas fa-palette"></i>
+</div>
+<div>
+<h3>Automatiza tu Negocio</h3>
+<p class="programa-cert">GAIPC®</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Crea 'bots' y flujos de trabajo que automaticen procesos sin escribir código.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+
+<!-- Programa 3: Project Management -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #00B894;">
+<i class="fas fa-project-diagram"></i>
+</div>
+<div>
+<h3>Marketing con IA</h3>
+<p class="programa-cert">AIPMFPC™</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Crea campañas y contenidos 10 veces más rápido usando IA.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+
+<!-- Programa 4: Scrum -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #FDCB6E;">
+<i class="fas fa-sync-alt"></i>
+</div>
+<div>
+<h3>Datos Inteligentes</h3>
+<p class="programa-cert">SMPC®</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Transforma datos crudos en historias visuales y decisiones de negocio claras con IA.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+
+<!-- Programa 5: Lean Six Sigma -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #636E72;">
+<i class="fas fa-chart-line"></i>
+</div>
+<div>
+<h3>Finanzas con IA</h3>
+<p class="programa-cert">LSSGB®</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Optimiza análisis financieros, predice tendencias y automatiza reportes con IA.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+
+<!-- Programa 6: Design Thinking -->
+<div class="programa-card">
+<div class="programa-header">
+<div class="programa-icon" style="background: #6C5CE7;">
+<i class="fas fa-lightbulb"></i>
+</div>
+<div>
+<h3>IA para Líderes y CEOs</h3>
+<p class="programa-cert">DTPC®</p>
+</div>
+</div>
+<div class="programa-body">
+<p>
+Entiende el impacto estratégico de la IA para liderar la transformación en tu organización.
+</p>
+<div class="programa-actions">
+<a href="champion-ia.html" class="btn-detalles">Ver Detalles</a>
+<a href="champion-ia.html" class="btn-inscribir">Inscribirme</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- NIVELES DE CERTIFICACIÓN -->
+<section class="niveles-section">
+<h2 class="section-title">Niveles de Certificación</h2>
+<p class="section-subtitle">Avanza en tu carrera profesional con certificaciones reconocidas internacionalmente</p>
+<div class="niveles-grid">
+<!-- Nivel 1 -->
+<div class="nivel-card">
+<div class="nivel-icon" style="background: #00B894;">
+<i class="fas fa-user-check"></i>
+</div>
+<h3>Participación</h3>
+<p>Certificado de participación incluido en todos los programas al completar el contenido.</p>
+<div class="nivel-badge" style="background: #00B894;">✓ Incluido</div>
+</div>
+
+<!-- Nivel 2 -->
+<div class="nivel-card destacado">
+<div class="nivel-icon" style="background: var(--primary);">
+<i class="fas fa-medal"></i>
+</div>
+<h3>Competencia</h3>
+<p>Certificación profesional con voucher incluido. Valida tus habilidades ante el mercado.</p>
+<div class="nivel-badge">≥70% + Voucher</div>
+</div>
+
+<!-- Nivel 3 -->
+<div class="nivel-card">
+<div class="nivel-icon" style="background: var(--orange);">
+<i class="fas fa-trophy"></i>
+</div>
+<h3>Avanzado</h3>
+<p>Certificación experta con proyecto final aprobado. Máximo reconocimiento profesional.</p>
+<div class="nivel-badge" style="background: var(--orange);">≥85% + Proyecto</div>
+</div>
+</div>
+</section>
+
+<!-- MÉTODOS DE PAGO -->
+<section class="pagos-section">
+<h2 class="section-title">Métodos de Pago Seguros</h2>
+<p class="section-subtitle">Facilitamos tu inversión en educación profesional</p>
+<div class="payment-logos">
+<div class="payment-logo paypal">
+<i class="fab fa-paypal"></i> PayPal
+</div>
+<div class="payment-logo apple">
+<i class="fab fa-apple"></i> Apple Pay
+</div>
+<div class="payment-logo google">
+<i class="fab fa-google"></i> Google Pay
+</div>
+<div class="payment-logo cards">
+<i class="fas fa-credit-card"></i> Tarjetas
+</div>
+</div>
+<p style="margin-top: 2rem; font-size: 1.1rem; color: #666;">
+Hasta 6 cuotas sin interés | Pago 100% seguro | Facturación internacional
+</p>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Ant-Ara</h3>
+<p>IA Práctica</p>
+<p>Productividad Real</p>
+</div>
+<div class="footer-section">
+<h3>Contacto</h3>
+<p><i class="fas fa-envelope"></i> contacto@ant-ara.com</p>
+<p><i class="fas fa-envelope"></i> alejandroortegaguerra@gmail.com</p>
+<p><i class="fas fa-paper-plane"></i> @productividadconia</p>
+</div>
+<div class="footer-section">
+<h3>Navegación</h3>
+<a href="index.html">Inicio</a>
+<a href="programas.html">Programas</a>
+<a href="index.html#equipo">Nosotros</a>
+<a href="champion-ia.html">Champion IA</a>
+</div>
+<div class="footer-section">
+<h3>Sitios Web</h3>
+<a href="https://ant-ara.com" target="_blank">ant-ara.com</a>
+<a href="https://innovarconalejandro.com" target="_blank">innovarconalejandro.com</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Ant-Ara. Todos los derechos reservados. | Diseñado con Alma y Disciplina</p>
+</div>
+</footer>
+
+<script>
+// Menú Hamburguesa
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+menuToggle.classList.toggle('active');
+navLinks.classList.toggle('active');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+link.addEventListener('click', () => {
+menuToggle.classList.remove('active');
+navLinks.classList.remove('active');
+});
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+</script>
+</body>
+</html>

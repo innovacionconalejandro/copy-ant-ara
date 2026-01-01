@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Champion IA | Domina la IA en 6 Semanas | Ant-Ara</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/HrAjlBl.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&family=Lexend:wght@400;600;700&family=Rubik:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--primary: #1e3c72;
+--secondary: #2a5298;
+--accent: #FF6B6B;
+--accent-orange: #FF8E53;
+--gold: #FFD700;
+--dark: #111827;
+--white: #FFFFFF;
+--light-bg: #f8f9ff;
+--font-heading: 'Epilogue', sans-serif;
+--font-subheading: 'Lexend', sans-serif;
+--font-body: 'Lato', sans-serif;
+}
+body {
+font-family: var(--font-body);
+color: var(--dark);
+line-height: 1.6;
+}
+/* HEADER */
+header {
+position: fixed;
+top: 0;
+width: 100%;
+background: linear-gradient(135deg, rgba(30, 60, 114, 0.95) 0%, rgba(42, 82, 152, 0.9) 100%);
+backdrop-filter: blur(10px);
+box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+z-index: 1000;
+padding: 0.5rem 0;
+}
+nav {
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 1rem;
+text-decoration: none;
+}
+.logo-circle {
+width: 50px;
+height: 50px;
+background: var(--gold);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo {
+height: 35px;
+}
+.logo-brand {
+font-family: var(--font-heading);
+font-size: 2rem;
+font-weight: 900;
+color: var(--white);
+}
+.nav-back {
+background: var(--accent);
+color: var(--white);
+padding: 0.8rem 1.8rem;
+border-radius: 25px;
+text-decoration: none;
+font-weight: 700;
+font-family: var(--font-heading);
+transition: all 0.3s;
+}
+.nav-back:hover {
+background: var(--accent-orange);
+transform: translateY(-2px);
+}
+/* HERO */
+.hero-champion {
+min-height: 100vh;
+background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+color: var(--white);
+padding: 10rem 2rem 4rem;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.hero-champion::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.1) 0%, transparent 50%);
+opacity: 0.3;
+}
+.hero-content {
+max-width: 900px;
+margin: 0 auto;
+position: relative;
+z-index: 2;
+}
+.champion-badge {
+display: inline-block;
+background: var(--gold);
+color: var(--primary);
+padding: 1rem 2.5rem;
+border-radius: 50px;
+font-weight: 900;
+font-size: 1.2rem;
+margin-bottom: 2rem;
+box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.05); }
+}
+.hero-champion h1 {
+font-family: var(--font-heading);
+font-size: 4rem;
+font-weight: 900;
+margin-bottom: 1.5rem;
+line-height: 1.2;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.hero-subtitle {
+font-size: 1.8rem;
+margin-bottom: 1rem;
+opacity: 0.95;
+}
+.hero-tagline {
+font-family: var(--font-italic);
+font-style: italic;
+font-size: 1.3rem;
+margin-bottom: 3rem;
+opacity: 0.9;
+}
+.cta-primary {
+display: inline-block;
+background: linear-gradient(45deg, var(--accent) 0%, var(--accent-orange) 100%);
+color: var(--white);
+padding: 1.5rem 4rem;
+border-radius: 50px;
+text-decoration: none;
+font-size: 1.3rem;
+font-weight: 900;
+font-family: var(--font-heading);
+box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+transition: all 0.3s;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+.cta-primary:hover {
+transform: translateY(-3px);
+box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+}
+/* PAIN POINTS */
+.pain-points {
+padding: 6rem 2rem;
+background: var(--white);
+}
+.section-title {
+font-family: var(--font-heading);
+font-size: 3rem;
+color: var(--primary);
+text-align: center;
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.section-subtitle {
+font-size: 1.3rem;
+text-align: center;
+color: #666;
+margin-bottom: 4rem;
+max-width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+.pain-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 2.5rem;
+}
+.pain-card {
+background: var(--light-bg);
+padding: 2.5rem;
+border-radius: 20px;
+border-left: 5px solid var(--accent);
+transition: all 0.3s;
+}
+.pain-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+.pain-card h3 {
+font-family: var(--font-subheading);
+font-size: 1.4rem;
+color: var(--primary);
+margin-bottom: 1rem;
+font-weight: 700;
+}
+.pain-card p {
+color: #555;
+line-height: 1.8;
+}
+/* SOLUTION */
+.solution-section {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: var(--white);
+padding: 6rem 2rem;
+}
+.solution-section .section-title {
+color: var(--white);
+}
+.solution-grid {
+max-width: 1200px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+}
+.solution-card {
+background: rgba(255,255,255,0.1);
+padding: 3rem;
+border-radius: 20px;
+text-align: center;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.2);
+transition: all 0.3s;
+}
+.solution-card:hover {
+transform: translateY(-8px);
+background: rgba(255,255,255,0.15);
+}
+.solution-icon {
+font-size: 3.5rem;
+margin-bottom: 1.5rem;
+}
+.solution-card h3 {
+font-family: var(--font-heading);
+font-size: 1.6rem;
+margin-bottom: 1.5rem;
+font-weight: 800;
+}
+.solution-card p {
+font-size: 1.1rem;
+line-height: 1.8;
+}
+/* MÓDULOS */
+.modules-section {
+padding: 6rem 2rem;
+background: var(--white);
+}
+.modules-grid {
+max-width: 1200px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 3rem;
+}
+.module-card {
+background: var(--light-bg);
+padding: 2.5rem;
+border-radius: 20px;
+border-top: 5px solid var(--primary);
+transition: all 0.3s;
+}
+.module-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+.module-number {
+background: var(--primary);
+color: var(--white);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 900;
+font-size: 1.5rem;
+font-family: var(--font-heading);
+margin-bottom: 1.5rem;
+}
+.module-card h3 {
+font-family: var(--font-heading);
+font-size: 1.6rem;
+color: var(--primary);
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.module-card p {
+color: #555;
+line-height: 1.8;
+font-size: 1.05rem;
+}
+/* PRICING */
+.pricing-section {
+background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+color: var(--white);
+padding: 6rem 2rem;
+text-align: center;
+}
+.pricing-section .section-title {
+color: var(--white);
+}
+.pricing-cards {
+max-width: 1000px;
+margin: 4rem auto 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 3rem;
+}
+.pricing-card {
+background: rgba(255,255,255,0.1);
+padding: 3rem;
+border-radius: 20px;
+backdrop-filter: blur(10px);
+border: 2px solid rgba(255,255,255,0.2);
+position: relative;
+transition: all 0.3s;
+}
+.pricing-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.pricing-card.popular {
+border: 3px solid var(--gold);
+transform: scale(1.05);
+}
+.popular-badge {
+position: absolute;
+top: -15px;
+left: 50%;
+transform: translateX(-50%);
+background: var(--gold);
+color: var(--primary);
+padding: 0.7rem 2rem;
+border-radius: 30px;
+font-weight: 900;
+font-size: 0.95rem;
+}
+.pricing-card h3 {
+font-family: var(--font-heading);
+font-size: 2rem;
+margin-bottom: 1rem;
+font-weight: 800;
+}
+.price {
+font-size: 4rem;
+font-weight: 900;
+font-family: var(--font-heading);
+margin-bottom: 0.5rem;
+}
+.price-subtitle {
+opacity: 0.9;
+margin-bottom: 2rem;
+font-size: 1.1rem;
+}
+.features-list {
+text-align: left;
+margin-bottom: 2rem;
+list-style: none;
+}
+.features-list li {
+padding: 0.8rem 0;
+padding-left: 2rem;
+position: relative;
+font-size: 1.05rem;
+}
+.features-list li::before {
+content: "✓";
+position: absolute;
+left: 0;
+color: #4CAF50;
+font-weight: 900;
+font-size: 1.3rem;
+}
+.cta-pricing {
+display: block;
+width: 100%;
+padding: 1.3rem;
+background: var(--accent);
+color: var(--white);
+text-decoration: none;
+font-family: var(--font-heading);
+font-weight: 900;
+font-size: 1.1rem;
+border-radius: 30px;
+transition: all 0.3s;
+text-transform: uppercase;
+}
+.cta-pricing:hover {
+background: var(--accent-orange);
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+}
+/* PAYMENT METHODS */
+.payment-methods {
+margin-top: 3rem;
+padding: 2rem;
+background: rgba(255,255,255,0.1);
+border-radius: 20px;
+}
+.payment-methods h3 {
+font-size: 1.5rem;
+margin-bottom: 1rem;
+}
+.payment-logos {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 2rem;
+flex-wrap: wrap;
+margin-top: 1.5rem;
+}
+.payment-logo {
+font-size: 2.5rem;
+opacity: 0.8;
+transition: all 0.3s;
+}
+.payment-logo:hover {
+opacity: 1;
+transform: scale(1.2);
+}
+/* FAQ */
+.faq-section {
+padding: 6rem 2rem;
+background: var(--light-bg);
+}
+.faq-container {
+max-width: 900px;
+margin: 4rem auto 0;
+}
+.faq-item {
+background: var(--white);
+padding: 2rem;
+border-radius: 15px;
+margin-bottom: 1.5rem;
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+cursor: pointer;
+transition: all 0.3s;
+}
+.faq-item:hover {
+box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+.faq-question {
+font-family: var(--font-heading);
+font-size: 1.3rem;
+color: var(--primary);
+font-weight: 700;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.faq-answer {
+color: #555;
+line-height: 1.8;
+margin-top: 1rem;
+display: none;
+font-size: 1.05rem;
+}
+.faq-item.active .faq-answer {
+display: block;
+}
+.faq-icon {
+font-size: 1.5rem;
+transition: transform 0.3s;
+}
+.faq-item.active .faq-icon {
+transform: rotate(180deg);
+}
+/* URGENCY */
+.urgency-section {
+background: var(--accent);
+color: var(--white);
+padding: 4rem 2rem;
+text-align: center;
+}
+.urgency-section h2 {
+font-family: var(--font-heading);
+font-size: 2.5rem;
+margin-bottom: 1.5rem;
+font-weight: 900;
+}
+.urgency-section p {
+font-size: 1.3rem;
+margin-bottom: 2rem;
+}
+/* FOOTER */
+footer {
+background: #1a1a1a;
+color: var(--white);
+padding: 3rem 2rem 1rem;
+}
+.footer-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 3rem;
+margin-bottom: 2rem;
+}
+.footer-section h3 {
+font-family: var(--font-heading);
+font-size: 1.4rem;
+margin-bottom: 1rem;
+color: var(--accent-orange);
+font-weight: 700;
+}
+.footer-section p,
+.footer-section a {
+color: rgba(255,255,255,0.8);
+text-decoration: none;
+display: block;
+margin-bottom: 0.5rem;
+transition: color 0.3s;
+}
+.footer-section a:hover {
+color: var(--accent-orange);
+}
+.footer-bottom {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(255,255,255,0.1);
+color: rgba(255,255,255,0.6);
+}
+/* RESPONSIVE */
+@media (max-width: 968px) {
+.hero-champion h1 {
+font-size: 2.8rem;
+}
+.section-title {
+font-size: 2.2rem;
+}
+.pain-grid, .solution-grid, .modules-grid, .pricing-cards {
+grid-template-columns: 1fr;
+}
+.pricing-card.popular {
+transform: scale(1);
+}
+}
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header>
+<nav>
+<a href="index.html" class="logo-container">
+<div class="logo-circle">
+<img src="https://i.imgur.com/HrAjlBl.png" alt="Ant-Ara Logo" class="logo">
+</div>
+<span class="logo-brand">ANT-ARA</span>
+</a>
+<a href="programas.html" class="nav-back">
+<i class="fas fa-arrow-left"></i> Ver Todos los Programas
+</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-champion">
+<div class="hero-content">
+<div class="champion-badge">🏆 PROGRAMA CHAMPION IA</div>
+<h1>Domina la IA y Multiplica Tu Productividad</h1>
+<p class="hero-subtitle">El programa de 6 semanas que te convierte en el referente de IA en tu equipo</p>
+<p class="hero-tagline">
+No importa si trabajas en gobierno, manufactura, educación o cualquier industria.<br>
+Si usas una computadora, puedes ser el experto que todos admiran.
+</p>
+<a href="#precio" class="cta-primary">Quiero Ser Champion IA</a>
+</div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-points">
+<h2 class="section-title">¿Te Sientes Identificado con Esto?</h2>
+<p class="section-subtitle">Miles de profesionales viven estas frustraciones diariamente...</p>
+<div class="pain-grid">
+<div class="pain-card">
+<h3>😤 "Siempre el último en entregar"</h3>
+<p>Mientras otros terminan sus tareas en horas, tú necesitas días enteros. Te quedas hasta tarde y aún así no alcanzas.</p>
+</div>
+<div class="pain-card">
+<h3>😔 "Nunca soy el que sabe"</h3>
+<p>En las reuniones, siempre hay alguien más que tiene las respuestas rápidas, las ideas brillantes, las soluciones inteligentes.</p>
+</div>
+<div class="pain-card">
+<h3>😫 "Trabajo manual infinito"</h3>
+<p>Copiar, pegar, formatear, buscar información, hacer reportes... Sientes que pierdes tu vida en tareas repetitivas.</p>
+</div>
+<div class="pain-card">
+<h3>😟 "Me están quedando atrás"</h3>
+<p>Ves que otros usan herramientas nuevas, hablan de IA, automatizan procesos... y tú sigues haciendo todo "a la antigua".</p>
+</div>
+<div class="pain-card">
+<h3>😰 "No tengo tiempo para aprender"</h3>
+<p>Quieres actualizarte, pero entre el trabajo, la familia y las responsabilidades, ¿cuándo vas a aprender algo nuevo?</p>
+</div>
+<div class="pain-card">
+<h3>😠 "Siempre hay excusas para no ascender"</h3>
+<p>"Necesitas más experiencia", "otros candidatos tienen más habilidades"... Sientes que nunca tienes esa ventaja especial.</p>
+</div>
+</div>
+<div style="text-align: center; font-size: 1.4rem; color: var(--primary); font-weight: 700; margin-top: 3rem;">
+¡BASTA! Es hora de que TÚ seas el CHAMPION que todos respetan y consultan.
+</div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section">
+<h2 class="section-title">🚀 Imagínate Siendo el Champion de Tu Lugar</h2>
+<div class="solution-grid">
+<div class="solution-card">
+<div class="solution-icon">⚡</div>
+<h3>El más rápido y eficiente</h3>
+<p>Terminas tus tareas en la mitad del tiempo mientras otros siguen trabajando. Todos se preguntan: "¿Cómo lo hace?"</p>
+</div>
+<div class="solution-card">
+<div class="solution-icon">🎯</div>
+<h3>El que siempre tiene LA solución</h3>
+<p>En cada reunión eres quien aporta ideas brillantes, análisis profundos y propuestas innovadoras que dejan a todos impresionados.</p>
+</div>
+<div class="solution-card">
+<div class="solution-icon">🏆</div>
+<h3>El referente tecnológico</h3>
+<p>Tus colegas te buscan para preguntarte sobre herramientas, automaciones y estrategias. Eres el experto al que todos acuden.</p>
+</div>
+<div class="solution-card">
+<div class="solution-icon">📈</div>
+<h3>El candidato obvio para ascensos</h3>
+<p>Tu productividad excepcional y habilidades avanzadas te convierten en la opción natural para mejores posiciones y aumentos.</p>
+</div>
+</div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="modules-section">
+<h2 class="section-title">🎯 Los 6 Módulos del Programa Champion IA</h2>
+<p class="section-subtitle">Contenido estructurado para llevarte de principiante a experto en 6 semanas</p>
+<div class="modules-grid">
+<div class="module-card">
+<div class="module-number">1</div>
+<h3>Fundamentos de IA y Configuración</h3>
+<p>Comprende cómo funciona la IA, configura tus herramientas esenciales (ChatGPT, Copilot, Claude) y crea tu primer asistente digital personalizado.</p>
+</div>
+<div class="module-card">
+<div class="module-number">2</div>
+<h3>Prompt Engineering Maestro</h3>
+<p>Domina el arte de "hablar" con la IA. Aprende técnicas avanzadas de prompting para obtener resultados profesionales en segundos.</p>
+</div>
+<div class="module-card">
+<div class="module-number">3</div>
+<h3>Automatización de Tareas Diarias</h3>
+<p>Automatiza emails, reportes, presentaciones y análisis de datos. Libera 2-3 horas diarias con flujos de trabajo inteligentes.</p>
+</div>
+<div class="module-card">
+<div class="module-number">4</div>
+<h3>IA para Análisis y Decisiones</h3>
+<p>Usa IA para analizar datos complejos, generar insights y tomar decisiones informadas. Conviértete en el analista estrella.</p>
+</div>
+<div class="module-card">
+<div class="module-number">5</div>
+<h3>Creación de Contenido Profesional</h3>
+<p>Genera documentos, presentaciones, propuestas y contenido de marketing de nivel profesional en minutos, no horas.</p>
+</div>
+<div class="module-card">
+<div class="module-number">6</div>
+<h3>Sistema de Productividad IA Completo</h3>
+<p>Integra todo lo aprendido en un sistema completo de productividad con IA que te haga destacar como el Champion de tu equipo.</p>
+</div>
+</div>
+<div style="background: var(--light-bg); padding: 3rem; border-radius: 20px; text-align: center; max-width: 900px; margin: 4rem auto 0;">
+<h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.8rem;">🎓 BONUS INCLUIDO</h3>
+<p style="font-size: 1.3rem; margin-bottom: 1rem;"><strong>Certificación Internacional GRATUITA</strong></p>
+<p style="font-size: 1.1rem; color: #666;">Certiprof Generative AI Professional (GAIPC™) - Valorada en $200 USD</p>
+<p style="color: #555; margin-top: 1rem;">Esta certificación te posiciona oficialmente como experto en IA ante cualquier empleador</p>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="precio">
+<h2 class="section-title">💎 Inversión para Convertirte en Champion</h2>
+<div class="pricing-cards">
+<div class="pricing-card">
+<h3>Champion Estándar</h3>
+<div class="price">$200</div>
+<p class="price-subtitle">Todo lo que necesitas para destacar</p>
+<ul class="features-list">
+<li>6 semanas de contenido intensivo</li>
+<li>6 módulos completos de IA</li>
+<li>Acceso a todas las herramientas</li>
+<li>Certificación Certiprof GRATUITA</li>
+<li>Soporte del instructor</li>
+<li>Garantía de 30 días</li>
+</ul>
+<div id="paypal-button-standard"></div>
+<a href="#" class="cta-pricing">Empezar Ahora</a>
+</div>
+
+<div class="pricing-card popular">
+<div class="popular-badge">⭐ MÁS POPULAR</div>
+<h3>Champion Premium</h3>
+<div class="price">$350</div>
+<p class="price-subtitle">Para verdaderos profesionales</p>
+<ul class="features-list">
+<li>Todo lo del plan Estándar</li>
+<li>Certificación Microsoft AI Fundamentals</li>
+<li>Sesiones grupales de mentoría</li>
+<li>Acceso VIP a recursos adicionales</li>
+<li>Red exclusiva de Champions</li>
+<li>Soporte prioritario 24/7</li>
+<li>Acceso de por vida</li>
+</ul>
+<div id="paypal-button-premium"></div>
+<a href="#" class="cta-pricing">Ser Champion Premium</a>
+</div>
+</div>
+
+<div class="payment-methods">
+<h3>💳 Facilidades de Pago</h3>
+<p>Hasta 6 cuotas sin interés | Aceptamos todas las tarjetas | Pago 100% seguro</p>
+<div class="payment-logos">
+<i class="fab fa-cc-paypal payment-logo"></i>
+<i class="fab fa-cc-apple-pay payment-logo"></i>
+<i class="fab fa-google-pay payment-logo"></i>
+<i class="fas fa-credit-card payment-logo"></i>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+<h2 class="section-title">❓ Preguntas Frecuentes</h2>
+<div class="faq-container">
+<div class="faq-item">
+<div class="faq-question">
+¿Necesito experiencia previa en tecnología?
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+No, el programa está diseñado para cualquier profesional que use computadora en su trabajo. Empezamos desde cero y avanzamos gradualmente.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+¿Cuánto tiempo necesito dedicar semanalmente?
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+Recomendamos 5-7 horas semanales, pero el contenido es flexible. Puedes avanzar a tu propio ritmo.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+¿Las certificaciones son reconocidas internacionalmente?
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+Sí, Certiprof y Microsoft son certificaciones reconocidas globalmente y validadas por miles de empresas.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+¿Qué pasa si no puedo completar el programa en 6 semanas?
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+Tienes acceso extendido de 6 meses (plan Estándar) o de por vida (plan Premium). Avanza a tu ritmo sin presión.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+¿Hay garantía de satisfacción?
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+Sí, ofrecemos garantía de 30 días. Si el programa no cumple tus expectativas, te devolvemos el 100% de tu inversión.</div>
+</div>
+</div>
+</section>
+
+<!-- URGENCY -->
+<section class="urgency-section">
+<h2>⚡ Solo para los Primeros 100 Champions</h2>
+<p>
+Este precio especial es solo para profesionales visionarios que actúan AHORA.<br>
+Después el precio sube a $299 / $499 (precio regular)
+</p>
+<a href="#precio" class="cta-primary">Asegurar Mi Lugar de Champion</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h3>Ant-Ara</h3>
+<p>IA Práctica, Productividad Real</p>
+</div>
+<div class="footer-section">
+<h3>Contacto</h3>
+<p><i class="fas fa-envelope"></i> contacto@ant-ara.com</p>
+<p><i class="fas fa-envelope"></i> alejandroortegaguerra@gmail.com</p>
+</div>
+<div class="footer-section">
+<h3>Enlaces</h3>
+<a href="index.html">Inicio</a>
+<a href="programas.html">Programas</a>
+<a href="index.html#equipo">Equipo</a>
+</div>
+<div class="footer-section">
+<h3>Legal</h3>
+<a href="#">Términos y Condiciones</a>
+<a href="#">Política de Privacidad</a>
+<a href="#">Política de Reembolso</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Ant-Ara | Transformando profesionales en Champions digitales</p>
+</div>
+</footer>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+item.addEventListener('click', () => {
+item.classList.toggle('active');
+});
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+
+// PayPal Integration (placeholder - requiere configuración real)
+// paypal.Buttons({
+//   createOrder: function(data, actions) {
+//     return actions.order.create({
+//       purchase_units: [{
+//         amount: {
+//           value: '200.00' // o 350.00 para premium
+//         }
+//       }]
+//     });
+//   },
+//   onApprove: function(data, actions) {
+//     return actions.order.capture().then(function(details) {
+//       alert('Pago completado por ' + details.payer.name.given_name);
+//     });
+//   }
+// }).render('#paypal-button-standard');
+</script>
+</body>
+</html>

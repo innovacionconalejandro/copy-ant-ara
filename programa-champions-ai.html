@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Champions AI | Ecosistema de Productividad</title>
+    
+    <!-- Fuentes: Epilogue (Titulares) y Nunito (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700;800&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PAYPAL SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA9PrQ0N3i30W_yPdOAVg0LY9nM_fDIOWrix_gzkYRYy15ThxzJSiKztbLAoxjyapXSpVSm4jmqzNynM&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+
+    <style>
+        :root {
+            /* MUNDO CHAMPIONS (Oscuro) */
+            --champions-bg: #050A14;
+            --champions-accent: #00B4D8;
+            --text-light: #ffffff;
+            
+            /* MUNDO AVANZA (Claro/Institucional) */
+            --avanza-bg: #ffffff;
+            --avanza-blue: #005691;
+            --avanza-dark: #0A1E30;
+            --avanza-cert-blue: #0093E9; /* Un azul más vibrante para destacar */
+            
+            --transition-speed: 0.4s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Nunito', sans-serif; overflow-x: hidden; background-color: var(--champions-bg); }
+
+        /* --- SISTEMA DE VISTAS (SPA) --- */
+        .view-container {
+            width: 100%;
+            min-height: 100vh;
+            position: absolute;
+            top: 0; left: 0;
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+            background: var(--champions-bg); /* Default base */
+        }
+        .view-active { opacity: 1; pointer-events: all; z-index: 10; position: relative; }
+        .view-hidden { opacity: 0; pointer-events: none; position: absolute; transform: scale(0.98); z-index: 0; height: 0; overflow: hidden; }
+
+        /* =========================================
+           ESTILOS VISTA 1: CHAMPIONS (HOME)
+           ========================================= */
+        #view-home { background-color: var(--champions-bg); color: var(--text-light); text-align: center; }
+        .champions-header { padding: 4rem 1.5rem 2rem; display: flex; flex-direction: column; align-items: center; }
+        .main-icon-container { width: 130px; height: 130px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 15px rgba(0, 180, 216, 0.3)); }
+        .main-icon { width: 100%; height: auto; object-fit: contain; }
+        .brand-title { font-family: 'Epilogue', sans-serif; font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; color: white; }
+        .brand-tagline { font-size: 1.1rem; color: #a0aab5; max-width: 600px; margin: 0 auto 3rem; }
+        .sectors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 500px; margin: 0 auto 4rem; padding: 0 1.5rem; }
+        @media (min-width: 768px) { .sectors-grid { grid-template-columns: repeat(4, 1fr); max-width: 900px; } }
+        .sector-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.5rem 0.5rem; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+        .sector-btn:active { transform: scale(0.95); background: rgba(255,255,255,0.08); }
+        .sector-ring { width: 55px; height: 55px; border-radius: 50%; border: 3px solid #444; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; transition: 0.3s; }
+        .sector-label { font-family: 'Epilogue'; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-gobierno:hover .sector-ring { border-color: #00B4D8; box-shadow: 0 0 15px #00B4D8; }
+
+        /* =========================================
+           ESTILOS VISTA 2: AVANZA (GOBIERNO)
+           ========================================= */
+        #view-avanza { background-color: var(--avanza-bg); color: #333; }
+
+        /* Navbar */
+        .avanza-nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { border: none; background: none; font-weight: 700; color: var(--avanza-dark); cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        
+        /* Hero Section */
+        .avanza-hero { text-align: center; padding: 2rem 1.5rem 3rem; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%); }
+        .avanza-logo-hero { width: 140px; height: 140px; border-radius: 50%; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin-bottom: 1.5rem; object-fit: cover; }
+        .avanza-h1 { font-family: 'Epilogue'; color: var(--avanza-dark); font-size: 2.2rem; line-height: 1.1; margin-bottom: 0.5rem; }
+        .avanza-lead { font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto; }
+
+        /* CARRUSEL DE IMÁGENES (MÁS ÉNFASIS EN VALOR) */
+        .carousel-container {
+            width: 100%; overflow-x: scroll; scroll-snap-type: x mandatory;
+            display: flex; gap: 15px; padding: 0 1.5rem 2rem;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+
+        .carousel-slide {
+            flex: 0 0 88%; /* Ajustado para que se vea más grande */
+            scroll-snap-align: center; border-radius: 12px; overflow: hidden;
+            position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            aspect-ratio: 16/9; /* Alto y ancho relativo */
+        }
+        .carousel-img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-caption {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white; padding: 2rem 1rem 1rem; font-size: 1.1rem; font-family: 'Epilogue', sans-serif;
+        }
+
+        /* Beneficios Rápidos (Ahora con el logo de CertiProf) */
+        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 0 1.5rem 3rem; max-width: 800px; margin: 0 auto; }
+        .benefit-card { background: #f9f9f9; padding: 1.5rem 1rem; border-radius: 12px; text-align: center; border-top: 3px solid var(--avanza-blue); }
+        .benefit-icon { font-size: 1.5rem; color: var(--avanza-blue); margin-bottom: 0.5rem; display: block; }
+        .benefit-title { font-family: 'Epilogue'; font-weight: 700; font-size: 0.9rem; color: var(--avanza-dark); }
+        .certifprof-logo { height: 30px; margin-top: 5px; }
+
+        /* Acordeón / Temario (Manteniendo estructura, pero con el título de "Lo que lograrás") */
+        .curriculum-section { padding: 0 1.5rem 3rem; max-width: 800px; margin: 0 auto; }
+        .curriculum-details { background: white; border: 1px solid #eee; border-radius: 8px; margin-bottom: 0.5rem; overflow: hidden; }
+        .curriculum-summary { padding: 1rem; cursor: pointer; font-weight: 700; color: var(--avanza-dark); display: flex; justify-content: space-between; align-items: center; background: #fff; }
+        .curriculum-summary:hover { background: #f4f7f9; }
+        .curriculum-content { padding: 1rem; color: #555; font-size: 0.9rem; border-top: 1px solid #eee; background: #fafafa; }
+        details[open] .curriculum-summary { color: var(--avanza-blue); border-bottom: 1px solid #eee; }
+
+        /* Zona de Pago */
+        .payment-zone { background: var(--avanza-dark); color: white; padding: 3rem 1.5rem; text-align: center; border-top-left-radius: 30px; border-top-right-radius: 30px; }
+    </style>
+</head>
+<body>
+
+    <!-- VISTA 1: HOME (CHAMPIONS AI) [sin cambios] -->
+    <div id="view-home" class="view-container view-active">
+        <header class="champions-header">
+            <div class="main-icon-container">
+                <img src="https://i.imgur.com/94FzKYD.png" alt="Champions AI" class="main-icon">
+            </div>
+            <h1 class="brand-title">CHAMPIONS AI</h1>
+            <p class="brand-tagline">
+                Productividad Universal.<br>
+                <span style="color: var(--champions-accent);">Potencia tu perfil profesional con IA.</span>
+            </p>
+        </header>
+        <div class="sectors-grid">
+            <div class="sector-btn btn-gobierno" onclick="switchView('avanza')">
+                <div class="sector-ring" style="border-color: #00B4D8;"><i class="fa-solid fa-landmark"></i></div>
+                <span class="sector-label">Gobierno</span>
+            </div>
+            <div class="sector-btn btn-ventas">
+                <div class="sector-ring" style="border-color: #2ECC71;"><i class="fa-solid fa-briefcase"></i></div>
+                <span class="sector-label">Ventas</span>
+            </div>
+            <div class="sector-btn btn-compras">
+                <div class="sector-ring" style="border-color: #9B59B6;"><i class="fa-solid fa-cart-shopping"></i></div>
+                <span class="sector-label">Compras</span>
+            </div>
+            <div class="sector-btn btn-educativo">
+                <div class="sector-ring" style="border-color: #F1C40F;"><i class="fa-solid fa-graduation-cap"></i></div>
+                <span class="sector-label">Educativo</span>
+            </div>
+        </div>
+        <div style="padding: 2rem; opacity: 0.6; font-size: 0.8rem;">
+            <p>Selecciona tu área de especialización.</p>
+        </div>
+        <footer style="padding: 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: #666; font-size: 0.8rem;">
+            <a href="https://ant-ara.com" style="color: inherit; text-decoration: none;">Respaldado por <strong>ANT-ARA</strong></a>
+        </footer>
+    </div>
+
+
+    <!-- =====================================
+         VISTA 2: PROGRAMA AVANZA (GOBIERNO)
+         ===================================== -->
+    <div id="view-avanza" class="view-container view-hidden">
+        
+        <!-- Navbar -->
+        <div class="avanza-nav">
+            <button class="back-btn" onclick="switchView('home')">
+                <i class="fa-solid fa-arrow-left"></i> Atrás
+            </button>
+            <span style="font-family:'Epilogue'; font-weight:800; color:var(--avanza-dark);">PROGRAMA AVANZA</span>
+        </div>
+
+        <!-- Hero -->
+        <div class="avanza-hero">
+            <img src="1000272619.jpg" alt="AVANZA Logo" class="avanza-logo-hero">
+            <h1 class="avanza-h1">Innovación en la Gestión Pública</h1>
+            <p class="avanza-lead">La herramienta definitiva para el funcionario moderno. Eficiencia, transparencia y rapidez.</p>
+        </div>
+
+        <!-- CARRUSEL DE VALOR (AHORA ENFOCADO EN BENEFICIOS Y CERTIFICACIÓN) -->
+        <div class="carousel-container">
+            <!-- SLIDE 1: AUTOMATIZACIÓN -->
+            <div class="carousel-slide" style="background: linear-gradient(135deg, #005691, #00B4D8);">
+                <!-- RECUERDA: Reemplaza el div interno con <img src="ruta-imagen-1.jpg" class="carousel-img"> cuando tengas la foto -->
+                <div style="height:100%; display:flex; align-items:center; justify-content:center; color:white; opacity:0.3; font-size:3rem;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div class="carousel-caption">
+                    **Ahorra 8 Horas** a la semana con Flujos Documentales Automatizados.
+                </div>
+            </div>
+            
+            <!-- SLIDE 2: TOMA DE DECISIONES -->
+            <div class="carousel-slide" style="background: linear-gradient(135deg, #0A1E30, #2c3e50);">
+                <!-- RECUERDA: Reemplaza el div interno con <img src="ruta-imagen-2.jpg" class="carousel-img"> cuando tengas la foto -->
+                <div style="height:100%; display:flex; align-items:center; justify-content:center; color:white; opacity:0.3; font-size:3rem;"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="carousel-caption">
+                    Decisiones con Criterio: Análisis de Presupuestos e Informes en Minutos.
+                </div>
+            </div>
+            
+            <!-- SLIDE 3: LA VENTA CLAVE (CERTIFICACIÓN) -->
+            <div class="carousel-slide" style="background: var(--avanza-cert-blue);">
+                <!-- RECUERDA: Reemplaza el div interno con <img src="ruta-imagen-3.jpg" class="carousel-img"> cuando tengas la foto -->
+                <div style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; padding:1rem;">
+                    <i class="fa-solid fa-certificate" style="font-size:3rem; margin-bottom:1rem;"></i>
+                    <p style="font-family: 'Epilogue'; font-size:1.5rem; text-align:center;">
+                        Certificación Internacional<br>**CertiProf GAIPC**
+                    </p>
+                    <p style="font-size:0.9rem; margin-top:0.5rem; font-weight:600; text-align:center;">
+                        Valor Original $300. Incluida en tu inscripción.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficios Rápidos (Ahora con Certificación visible) -->
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fa-solid fa-clock benefit-icon"></i>
+                <div class="benefit-title">Máxima Productividad</div>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-shield-halved benefit-icon"></i>
+                <div class="benefit-title">Transparencia y Seguridad</div>
+            </div>
+            <div class="benefit-card" style="border-top-color: var(--avanza-cert-blue);">
+                <i class="fa-solid fa-user-check benefit-icon" style="color: var(--avanza-cert-blue);"></i>
+                <div class="benefit-title">
+                    Certificación CertiProf
+                    <img src="https://placehold.co/100x30/0093E9/ffffff?text=CertiProf" alt="Logo CertiProf" class="certifprof-logo">
+                </div>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-brain benefit-icon"></i>
+                <div class="benefit-title">Pensamiento Estratégico</div>
+            </div>
+        </div>
+
+        <!-- Temario (Lo que lograrás) -->
+        <div class="curriculum-section">
+            <h3 style="font-family:'Epilogue'; color:var(--avanza-dark); margin-bottom:1rem; text-align:center;">Lo que Lograrás Módulo a Módulo</h3>
+            
+            <details class="curriculum-details">
+                <summary class="curriculum-summary">Módulo 1: IA y la Administración Pública <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="curriculum-content">Aprenderás a enmarcar la IA dentro de las normativas de tu institución para garantizar ética y legalidad en cada proceso. **(Resultado: Marco Legal y Ético establecido)**</div>
+            </details>
+            
+            <details class="curriculum-details">
+                <summary class="curriculum-summary">Módulo 2: Maestría en Documentos Oficiales <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="curriculum-content">Dominarás herramientas de IA para resumir extensos informes, redactar oficios concisos y crear minutas en el 10% del tiempo habitual. **(Resultado: Reducción drástica del tiempo administrativo)**</div>
+            </details>
+            
+            <details class="curriculum-details">
+                <summary class="curriculum-summary">Módulo 3: Liderazgo Asistido por Datos <i class="fa-solid fa-chevron-down"></i></summary>
+                <div class="curriculum-content">Usa la IA para analizar rápidamente hojas de cálculo complejas, identificar tendencias presupuestarias y generar proyecciones de impacto. **(Resultado: Decisión institucional basada en datos reales)**</div>
+            </details>
+        </div>
+
+        <!-- Zona de Pago -->
+        <div class="payment-zone">
+            <h2 style="font-family:'Epilogue'; margin-bottom:1rem;">Únete al Programa AVANZA</h2>
+            <p style="margin-bottom:2rem; opacity:0.9;">
+                Valor real: $300 USD. <span style="font-weight:700;">Precio de Lanzamiento Exclusivo: $99 USD.</span>
+            </p>
+            
+            <div style="background:white; padding:1.5rem; border-radius:12px; max-width:400px; margin:0 auto; color:#333;">
+                <p style="font-weight:700; margin-bottom:1rem; text-transform:uppercase; font-size:0.8rem; color:#888;">Pago seguro vía PayPal</p>
+                <div id="paypal-container-BFYND2G5D64UA"></div>
+            </div>
+            
+            <p style="font-size:0.75rem; margin-top:1.5rem; opacity:0.7;">
+                *La certificación CertiProf GAIPC está incluida en el precio.
+            </p>
+        </div>
+
+        <script>
+            // Renderizado de PayPal
+            try {
+                paypal.HostedButtons({
+                    hostedButtonId: "BFYND2G5D64UA"
+                }).render("#paypal-container-BFYND2G5D64UA");
+            } catch(e) { console.log("PayPal waiting..."); }
+        </script>
+
+        <footer style="text-align:center; padding:2rem; font-size:0.8rem; color:#888; background:#f4f7f9;">
+            &copy; 2025 Programa Avanza.<br>Una alianza Champions AI & Ant-Ara.
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE NAVEGACIÓN -->
+    <script>
+        function switchView(viewName) {
+            const home = document.getElementById('view-home');
+            const avanza = document.getElementById('view-avanza');
+
+            if (viewName === 'avanza') {
+                window.scrollTo(0, 0);
+                home.style.opacity = '0';
+                home.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    home.classList.remove('view-active');
+                    home.classList.add('view-hidden');
+                    avanza.classList.remove('view-hidden');
+                    avanza.classList.add('view-active');
+                    setTimeout(() => {
+                        avanza.style.opacity = '1';
+                        avanza.style.transform = 'scale(1)';
+                    }, 50);
+                }, 400); 
+            } else {
+                window.scrollTo(0, 0);
+                avanza.style.opacity = '0';
+                avanza.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    avanza.classList.remove('view-active');
+                    avanza.classList.add('view-hidden');
+                    home.classList.remove('view-hidden');
+                    home.classList.add('view-active');
+                    setTimeout(() => {
+                        home.style.opacity = '1';
+                        home.style.transform = 'scale(1)';
+                    }, 50);
+                }, 400);
+            }
+        }
+    </script>
+
+</body>
+</html>
