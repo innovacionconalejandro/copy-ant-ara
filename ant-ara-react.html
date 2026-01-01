@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ant-Ara | Estrategia con Alma, Resultados con Disciplina</title>
+<link rel="icon" type="image/png" href="https://i.imgur.com/007URKU.png">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- React & Babel -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--dark: #0a0a0f;
+--dark-secondary: #131318;
+--dark-tertiary: #1a1a24;
+--teal: #2F4F4F;
+--teal-light: #3a6464;
+--green: #4CAF50;
+--orange: #FF6B35;
+--orange-light: #FF8C61;
+--white: #FFFFFF;
+--gray-light: #f8f9fa;
+--gray: #6c757d;
+--font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-display: 'Space Grotesk', sans-serif;
+}
+
+body {
+font-family: var(--font-main);
+color: var(--dark);
+background: var(--white);
+line-height: 1.6;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== HEADER ========== */
+header {
+position: fixed;
+top: 0;
+width: 100%;
+background: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+z-index: 1000;
+transition: all 0.3s ease;
+}
+
+header.scrolled {
+box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+nav {
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+}
+
+.logo-container {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+text-decoration: none;
+transition: transform 0.3s ease;
+cursor: pointer;
+}
+
+.logo-container:hover {
+transform: translateY(-2px);
+}
+
+.logo-img {
+height: 45px;
+width: auto;
+filter: drop-shadow(0 2px 8px rgba(47, 79, 79, 0.15));
+}
+
+.logo-text {
+display: flex;
+flex-direction: column;
+gap: 0.1rem;
+}
+
+.logo-brand {
+font-family: var(--font-display);
+font-size: 1.75rem;
+font-weight: 700;
+color: var(--dark);
+letter-spacing: -0.5px;
+line-height: 1;
+}
+
+.logo-tagline {
+font-size: 0.7rem;
+color: var(--gray);
+font-weight: 500;
+letter-spacing: 0.3px;
+}
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+align-items: center;
+}
+
+.nav-links a {
+text-decoration: none;
+color: var(--dark);
+font-weight: 500;
+font-size: 0.95rem;
+transition: all 0.3s ease;
+position: relative;
+cursor: pointer;
+}
+
+.nav-links a::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0;
+height: 2px;
+background: var(--orange);
+transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+color: var(--orange);
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+.nav-cta {
+background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+color: var(--white) !important;
+padding: 0.7rem 1.8rem;
+border-radius: 100px;
+font-weight: 600;
+box-shadow: 0 4px 16px rgba(255, 107, 53, 0.25);
+transition: all 0.3s ease;
+}
+
+.nav-cta::after {
+display: none;
+}
+
+.nav-cta:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+}
+
+.menu-toggle {
+display: none;
+flex-direction: column;
+gap: 6px;
+background: none;
+border: none;
+cursor: pointer;
+padding: 0.5rem;
+}
+
+.menu-toggle span {
+width: 24px;
+height: 2px;
+background: var(--dark);
+border-radius: 2px;
+transition: all 0.3s ease;
+}
+
+/* ========== HERO ========== */
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f5 100%);
+position: relative;
+padding: 8rem 2rem 4rem;
+overflow: hidden;
+}
+
+.hero::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -20%;
+width: 600px;
+height: 600px;
+background: radial-gradient(circle, rgba(47, 79, 79, 0.08) 0%, transparent 70%);
+border-radius: 50%;
+animation: float 20s ease-in-out infinite;
+}
+
+.hero::after {
+content: '';
+position: absolute;
+bottom: -30%;
+left: -10%;
+width: 500px;
+height: 500px;
+background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+border-radius: 50%;
+animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+0%, 100% { transform: translate(0, 0) rotate(0deg); }
+33% { transform: translate(30px, -30px) rotate(120deg); }
+66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+.hero-content {
+max-width: 1200px;
+text-align: center;
+position: relative;
+z-index: 2;
+}
+
+.hero-logo {
+margin-bottom: 2rem;
+opacity: 0;
+animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero-logo img {
+height: 120px;
+width: auto;
+filter: drop-shadow(0 8px 24px rgba(47, 79, 79, 0.2));
+}
+
+.hero h1 {
+font-family: var(--font-display);
+font-size: clamp(2.5rem, 5vw, 4.5rem);
+font-weight: 800;
+color: var(--dark);
+margin-bottom: 1.5rem;
+line-height: 1.1;
+letter-spacing: -1px;
+opacity: 0;
+animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+
+.hero h1 .highlight {
+background: linear-gradient(135deg, var(--teal) 0%, var(--green) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.hero-subtitle {
+font-size: clamp(1.1rem, 2vw, 1.4rem);
+color: var(--gray);
+max-width: 700px;
+margin: 0 auto 2.5rem;
+line-height: 1.7;
+font-weight: 400;
+opacity: 0;
+animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+
+.hero-cta {
+display: inline-flex;
+align-items: center;
+gap: 0.75rem;
+padding: 1.2rem 2.5rem;
+background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+color: var(--white);
+text-decoration: none;
+font-weight: 600;
+font-size: 1.1rem;
+border-radius: 100px;
+box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+transition: all 0.3s ease;
+opacity: 0;
+animation: fadeInUp 0.8s ease 0.6s forwards;
+cursor: pointer;
+border: none;
+}
+
+.hero-cta:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 32px rgba(255, 107, 53, 0.4);
+}
+
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* ========== STATS BAR ========== */
+.stats-bar {
+background: var(--dark);
+color: var(--white);
+padding: 2.5rem 2rem;
+}
+
+.stats-container {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 3rem;
+text-align: center;
+}
+
+.stat-item {
+position: relative;
+}
+
+.stat-item::after {
+content: '';
+position: absolute;
+right: -1.5rem;
+top: 50%;
+transform: translateY(-50%);
+width: 1px;
+height: 60%;
+background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-item:last-child::after {
+display: none;
+}
+
+.stat-number {
+font-family: var(--font-display);
+font-size: 2.5rem;
+font-weight: 700;
+color: var(--orange);
+display: block;
+margin-bottom: 0.5rem;
+}
+
+.stat-label {
+font-size: 0.95rem;
+color: rgba(255, 255, 255, 0.7);
+font-weight: 400;
+}
+
+/* ========== SECTION COMMON ========== */
+section {
+padding: 6rem 2rem;
+}
+
+.section-header {
+text-align: center;
+max-width: 800px;
+margin: 0 auto 4rem;
+}
+
+.section-label {
+display: inline-block;
+padding: 0.5rem 1.2rem;
+background: rgba(255, 107, 53, 0.1);
+color: var(--orange);
+border-radius: 100px;
+font-size: 0.85rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin-bottom: 1rem;
+}
+
+.section-title {
+font-family: var(--font-display);
+font-size: clamp(2rem, 4vw, 3rem);
+font-weight: 800;
+color: var(--dark);
+margin-bottom: 1rem;
+line-height: 1.2;
+letter-spacing: -0.5px;
+}
+
+.section-description {
+font-size: 1.15rem;
+color: var(--gray);
+line-height: 1.7;
+}
+
+/* ========== CASES SECTION ========== */
+.cases-section {
+background: var(--gray-light);
+}
+
+.cases-grid {
+max-width: 1300px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+gap: 2rem;
+}
+
+.case-card {
+background: var(--white);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+}
+
+.case-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.case-image {
+width: 100%;
+height: 240px;
+object-fit: cover;
+transition: transform 0.4s ease;
+}
+
+.case-card:hover .case-image {
+transform: scale(1.05);
+}
+
+.case-content {
+padding: 2rem;
+}
+
+.case-tag {
+display: inline-block;
+padding: 0.4rem 1rem;
+background: linear-gradient(135deg, var(--teal) 0%, var(--green) 100%);
+color: var(--white);
+border-radius: 100px;
+font-size: 0.8rem;
+font-weight: 600;
+margin-bottom: 1rem;
+}
+
+.case-card h3 {
+font-family: var(--font-display);
+font-size: 1.5rem;
+color: var(--dark);
+margin-bottom: 1rem;
+font-weight: 700;
+line-height: 1.3;
+}
+
+.case-card p {
+color: var(--gray);
+line-height: 1.7;
+margin-bottom: 1.5rem;
+font-size: 0.95rem;
+}
+
+.case-result {
+padding: 1rem;
+background: rgba(76, 175, 80, 0.08);
+border-left: 3px solid var(--green);
+border-radius: 8px;
+margin-bottom: 1.5rem;
+}
+
+.case-result strong {
+color: var(--green);
+font-weight: 600;
+}
+
+.case-link {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+color: var(--orange);
+font-weight: 600;
+text-decoration: none;
+transition: gap 0.3s ease;
+cursor: pointer;
+}
+
+.case-link:hover {
+gap: 0.75rem;
+}
+
+/* ========== SERVICES SECTION ========== */
+.services-section {
+background: var(--white);
+}
+
+.services-grid {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+gap: 2.5rem;
+}
+
+.service-card {
+padding: 2.5rem;
+border-radius: 20px;
+border: 1px solid rgba(0, 0, 0, 0.06);
+transition: all 0.4s ease;
+background: var(--white);
+position: relative;
+overflow: hidden;
+}
+
+.service-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, var(--teal) 0%, var(--green) 100%);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+transform: scaleX(1);
+}
+
+.service-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 12px 40px rgba(47, 79, 79, 0.15);
+border-color: rgba(47, 79, 79, 0.2);
+}
+
+.service-icon {
+width: 64px;
+height: 64px;
+background: linear-gradient(135deg, var(--teal) 0%, var(--green) 100%);
+border-radius: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.8rem;
+color: var(--white);
+margin-bottom: 1.5rem;
+box-shadow: 0 8px 20px rgba(47, 79, 79, 0.2);
+}
+
+.service-card h3 {
+font-family: var(--font-display);
+font-size: 1.5rem;
+color: var(--dark);
+margin-bottom: 1rem;
+font-weight: 700;
+}
+
+.service-card p {
+color: var(--gray);
+line-height: 1.7;
+margin-bottom: 2rem;
+}
+
+.service-link {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+color: var(--teal);
+font-weight: 600;
+text-decoration: none;
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.service-link:hover {
+gap: 0.75rem;
+color: var(--orange);
+}
+
+/* ========== CHAMPION CTA ========== */
+.champion-cta {
+background: linear-gradient(135deg, var(--dark) 0%, var(--dark-secondary) 100%);
+color: var(--white);
+position: relative;
+overflow: hidden;
+}
+
+.champion-cta::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -20%;
+width: 500px;
+height: 500px;
+background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+border-radius: 50%;
+}
+
+.champion-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 4rem;
+align-items: center;
+position: relative;
+z-index: 2;
+}
+
+.champion-text h2 {
+font-family: var(--font-display);
+font-size: clamp(2rem, 4vw, 3.5rem);
+font-weight: 800;
+margin-bottom: 1.5rem;
+line-height: 1.2;
+}
+
+.champion-text .highlight {
+color: var(--orange);
+}
+
+.champion-text p {
+font-size: 1.2rem;
+line-height: 1.7;
+margin-bottom: 2rem;
+opacity: 0.9;
+}
+
+.champion-features {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+margin-bottom: 2.5rem;
+}
+
+.champion-feature {
+display: flex;
+align-items: center;
+gap: 0.75rem;
+}
+
+.champion-feature i {
+color: var(--orange);
+font-size: 1.2rem;
+}
+
+.champion-feature span {
+font-weight: 500;
+}
+
+.champion-btn {
+display: inline-flex;
+align-items: center;
+gap: 0.75rem;
+padding: 1.2rem 2.5rem;
+background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+color: var(--white);
+text-decoration: none;
+font-weight: 700;
+font-size: 1.1rem;
+border-radius: 100px;
+box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+transition: all 0.3s ease;
+cursor: pointer;
+border: none;
+}
+
+.champion-btn:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 32px rgba(255, 107, 53, 0.5);
+}
+
+.champion-visual {
+position: relative;
+}
+
+.champion-visual img {
+width: 100%;
+border-radius: 20px;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== TEAM SECTION ========== */
+.team-section {
+background: var(--gray-light);
+}
+
+.team-grid {
+max-width: 900px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 3rem;
+}
+
+.team-member {
+text-align: center;
+}
+
+.team-avatar {
+width: 180px;
+height: 180px;
+border-radius: 50%;
+object-fit: cover;
+object-position: center top;
+margin: 0 auto 1.5rem;
+border: 4px solid var(--white);
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+}
+
+.team-member:hover .team-avatar {
+transform: scale(1.05);
+box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.team-member h3 {
+font-family: var(--font-display);
+font-size: 1.6rem;
+color: var(--dark);
+margin-bottom: 0.5rem;
+font-weight: 700;
+}
+
+.team-role {
+color: var(--orange);
+font-weight: 600;
+font-size: 0.95rem;
+margin-bottom: 1rem;
+}
+
+.team-bio {
+color: var(--gray);
+line-height: 1.6;
+margin-bottom: 1.5rem;
+font-size: 0.95rem;
+}
+
+.social-links {
+display: flex;
+gap: 0.75rem;
+justify-content: center;
+}
+
+.social-links a {
+width: 40px;
+height: 40px;
+background: var(--white);
+border: 1px solid rgba(0, 0, 0, 0.1);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--dark);
+text-decoration: none;
+transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+background: var(--orange);
+color: var(--white);
+border-color: var(--orange);
+transform: translateY(-3px);
+}
+
+/* ========== FOOTER ========== */
+footer {
+background: var(--dark);
+color: var(--white);
+padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+max-width: 1200px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1.5fr repeat(3, 1fr);
+gap: 3rem;
+margin-bottom: 3rem;
+}
+
+.footer-brand {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.footer-logo {
+height: 50px;
+width: auto;
+margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+color: rgba(255, 255, 255, 0.7);
+line-height: 1.7;
+font-size: 0.95rem;
+}
+
+.footer-section h4 {
+font-family: var(--font-display);
+font-size: 1.1rem;
+font-weight: 700;
+margin-bottom: 1.5rem;
+color: var(--orange);
+}
+
+.footer-links {
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+}
+
+.footer-links a {
+color: rgba(255, 255, 255, 0.7);
+text-decoration: none;
+font-size: 0.95rem;
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.footer-links a:hover {
+color: var(--orange);
+transform: translateX(4px);
+}
+
+.footer-contact {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.footer-contact a {
+color: rgba(255, 255, 255, 0.7);
+text-decoration: none;
+font-size: 0.95rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+color: var(--orange);
+}
+
+.footer-bottom {
+max-width: 1200px;
+margin: 0 auto;
+padding-top: 2rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
+text-align: center;
+color: rgba(255, 255, 255, 0.5);
+font-size: 0.9rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 968px) {
+.nav-links {
+position: fixed;
+top: 80px;
+left: -100%;
+width: 100%;
+height: calc(100vh - 80px);
+background: rgba(255, 255, 255, 0.98);
+backdrop-filter: blur(12px);
+flex-direction: column;
+justify-content: center;
+padding: 2rem;
+gap: 2rem;
+transition: left 0.3s ease;
+}
+
+.nav-links.active {
+left: 0;
+}
+
+.menu-toggle {
+display: flex;
+}
+
+.hero {
+padding: 6rem 1.5rem 3rem;
+}
+
+.stats-container {
+grid-template-columns: 1fr;
+gap: 2rem;
+}
+
+.stat-item::after {
+display: none;
+}
+
+.cases-grid,
+.services-grid {
+grid-template-columns: 1fr;
+}
+
+.champion-content {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.champion-features {
+grid-template-columns: 1fr;
+}
+
+.champion-feature {
+justify-content: center;
+}
+
+.footer-content {
+grid-template-columns: 1fr;
+}
+}
+
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+// ========== DATA ==========
+const SITE_DATA = {
+stats: [
+{ number: "40%", label: "Reducción en costos operativos" },
+{ number: "65%", label: "Incremento en leads calificados" },
+{ number: "50%", label: "Menos retrasos en proyectos" },
+{ number: "20+", label: "Años de experiencia combinada" }
+],
+cases: [
+{
+tag: "Transformación Digital",
+title: "TOLIVIA: Ecosistema Digital para Seguros",
+description: "Creamos un universo digital completo: cotizador automático en línea, asistente virtual 24/7 con IA, y sistema de autogestión para clientes. Integración WhatsApp, web y backend.",
+result: "40% reducción en costos operativos, disponibilidad 24/7",
+image: "https://i.imgur.com/RHwlADm.png",
+link: "https://tolivia.com",
+linkText: "Ver proyecto"
+},
+{
+tag: "Aceleración Comercial",
+title: "DKORANDO: Arquitectura de Ventas",
+description: "Diseñamos una arquitectura comercial completa con KPIs digitales, funnel de conversión optimizado, y paquete de 36 publicaciones estratégicas en 3 meses.",
+result: "65% incremento en leads calificados en el primer trimestre",
+image: "https://i.imgur.com/aUW3ozt.png",
+link: "https://dkorando.com",
+linkText: "Ver proyecto"
+},
+{
+tag: "Project Management",
+title: "COFFEE PARTIES: Gestión Estratégica",
+description: "Implementación de sistema de gestión de proyectos para eventos corporativos. Automatización de cotizaciones, diseño de experiencias personalizadas, y tracking en tiempo real.",
+result: "50% reducción en tiempo de planificación, 30% aumento en satisfacción",
+image: "https://i.imgur.com/lLFSaXf.png",
+link: "#contacto",
+linkText: "Solicitar caso de estudio"
+}
+],
+services: [
+{
+icon: "fas fa-shield-alt",
+title: "Gestión de Riesgos y Cumplimiento",
+description: "Blindamos su patrimonio digital. Más que auditorías, ofrecemos ciberresponsabilidad estratégica que protege su activo más valioso: su información y reputación.",
+linkText: "Blindar mi empresa"
+},
+{
+icon: "fas fa-robot",
+title: "Optimización con IA",
+description: "Automatización e IA real para hacer más con menos fricción. Liberamos tiempo, reducimos errores y mejoramos productividad sin deshumanizar la experiencia.",
+linkText: "Automatizar procesos"
+},
+{
+icon: "fas fa-graduation-cap",
+title: "Academia: Programas de IA",
+description: "Formación práctica con certificación internacional. Champion IA, Automatización, Gestión de Proyectos con IA y más.",
+linkText: "Ver programas",
+link: "programas.html"
+}
+],
+team: [
+{
+name: "Jorge Luis",
+role: "Estratega Comercial & Innovación",
+bio: "Especialista en Gestión Comercial, Coaching y Transformación de Equipos",
+image: "https://i.imgur.com/TiUQN09.jpeg",
+social: {
+linkedin: "https://www.linkedin.com/in/jorgegonzalezgua"
+}
+},
+{
+name: "Alejandro Ortega",
+role: "Estratega de Marca & Transformación Digital",
+bio: "Experto en IA Aplicada, Innovación y Productividad Empresarial",
+image: "https://i.imgur.com/P5TMXOz.jpeg",
+social: {
+linkedin: "https://www.linkedin.com/in/innovar-con-alejadro",
+instagram: "https://www.instagram.com/innovarconalejandro",
+twitter: "https://twitter.com/innovarconAlex",
+telegram: "https://t.me/ant_ara_productividad"
+}
+}
+]
+};
+
+// ========== COMPONENTS ==========
+
+const Header = () => {
+const [scrolled, setScrolled] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
+
+useEffect(() => {
+const handleScroll = () => {
+setScrolled(window.scrollY > 50);
+};
+window.addEventListener('scroll', handleScroll);
+return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+const scrollToSection = (sectionId) => {
+const element = document.querySelector(sectionId);
+if (element) {
+element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+setMenuOpen(false);
+}
+};
+
+return (
+<header className={scrolled ? 'scrolled' : ''}>
+<nav>
+<div className="logo-container" onClick={() => scrollToSection('#hero')}>
+<img src="https://i.imgur.com/WhmuuWF.png" alt="Ant-Ara" className="logo-img" />
+</div>
+
+<button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+<span></span>
+<span></span>
+<span></span>
+</button>
+
+<ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+<li><a onClick={() => scrollToSection('#casos')}>Casos de Éxito</a></li>
+<li><a onClick={() => scrollToSection('#servicios')}>Servicios</a></li>
+<li><a onClick={() => scrollToSection('#equipo')}>Equipo</a></li>
+<li><a onClick={() => scrollToSection('#contacto')}>Contacto</a></li>
+<li><a href="champion-ia.html" className="nav-cta">Champion IA</a></li>
+</ul>
+</nav>
+</header>
+);
+};
+
+const Hero = () => {
+const scrollToContact = () => {
+document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+};
+
+return (
+<section className="hero" id="hero">
+<div className="hero-content">
+<div className="hero-logo">
+<img src="https://i.imgur.com/007URKU.png" alt="Ant-Ara Logo" />
+</div>
+<h1>
+Estrategia con <span className="highlight">Alma</span>,<br />
+Resultados con <span className="highlight">Disciplina</span>
+</h1>
+<p className="hero-subtitle">
+Transformamos PYMEs y empresas familiares guatemaltecas con consultoría estratégica
+que protege su legado mientras impulsa la innovación.
+</p>
+<button className="hero-cta" onClick={scrollToContact}>
+<span>Agendar Diagnóstico Gratuito</span>
+<i className="fas fa-arrow-right"></i>
+</button>
+</div>
+</section>
+);
+};
+
+const StatsBar = ({ stats }) => {
+return (
+<section className="stats-bar">
+<div className="stats-container">
+{stats.map((stat, index) => (
+<div key={index} className="stat-item">
+<span className="stat-number">{stat.number}</span>
+<span className="stat-label">{stat.label}</span>
+</div>
+))}
+</div>
+</section>
+);
+};
+
+const CasesSection = ({ cases }) => {
+return (
+<section className="cases-section" id="casos">
+<div className="section-header">
+<span className="section-label">Portafolio</span>
+<h2 className="section-title">Transformaciones Reales, Resultados Medibles</h2>
+<p className="section-description">
+Cada proyecto demuestra nuestra metodología "Alma y Disciplina" en acción
+</p>
+</div>
+
+<div className="cases-grid">
+{cases.map((caseItem, index) => (
+<div key={index} className="case-card">
+<img src={caseItem.image} alt={caseItem.title} className="case-image" />
+<div className="case-content">
+<span className="case-tag">{caseItem.tag}</span>
+<h3>{caseItem.title}</h3>
+<p>{caseItem.description}</p>
+<div className="case-result">
+<strong>Resultado:</strong> {caseItem.result}
+</div>
+<a
+href={caseItem.link}
+className="case-link"
+target={caseItem.link.startsWith('http') ? '_blank' : '_self'}
+rel={caseItem.link.startsWith('http') ? 'noopener noreferrer' : ''}
+>
+{caseItem.linkText} <i className="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+))}
+</div>
+</section>
+);
+};
+
+const ServicesSection = ({ services }) => {
+const scrollToContact = () => {
+document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+};
+
+return (
+<section className="services-section" id="servicios">
+<div className="section-header">
+<span className="section-label">Soluciones</span>
+<h2 className="section-title">Consultoría Estratégica a la Medida</h2>
+<p className="section-description">
+Protegemos su legado mientras impulsamos la innovación
+</p>
+</div>
+
+<div className="services-grid">
+{services.map((service, index) => (
+<div key={index} className="service-card">
+<div className="service-icon">
+<i className={service.icon}></i>
+</div>
+<h3>{service.title}</h3>
+<p>{service.description}</p>
+<a
+className="service-link"
+onClick={service.link ? null : scrollToContact}
+href={service.link || '#contacto'}
+>
+{service.linkText} <i className="fas fa-arrow-right"></i>
+</a>
+</div>
+))}
+</div>
+</section>
+);
+};
+
+const ChampionCTA = () => {
+return (
+<section className="champion-cta">
+<div className="champion-content">
+<div className="champion-text">
+<h2>
+<span className="highlight">Champion IA:</span><br />
+Multiplica Tu Productividad en 6 Semanas
+</h2>
+<p>
+El programa de formación diseñado para convertirte en el referente de IA
+en tu equipo, sin necesidad de saber programar.
+</p>
+<div className="champion-features">
+<div className="champion-feature">
+<i className="fas fa-check-circle"></i>
+<span>30h de contenido práctico</span>
+</div>
+<div className="champion-feature">
+<i className="fas fa-check-circle"></i>
+<span>6 módulos intensivos</span>
+</div>
+<div className="champion-feature">
+<i className="fas fa-check-circle"></i>
+<span>2 certificaciones incluidas</span>
+</div>
+<div className="champion-feature">
+<i className="fas fa-check-circle"></i>
+<span>100% aplicable al trabajo</span>
+</div>
+</div>
+<a href="champion-ia.html" className="champion-btn">
+Conocer Champion IA <i className="fas fa-arrow-right"></i>
+</a>
+</div>
+<div className="champion-visual">
+<img src="https://i.imgur.com/RHwlADm.png" alt="Champion IA" />
+</div>
+</div>
+</section>
+);
+};
+
+const TeamSection = ({ team }) => {
+return (
+<section className="team-section" id="equipo">
+<div className="section-header">
+<span className="section-label">Equipo</span>
+<h2 className="section-title">Los Estrategas de Ant-Ara</h2>
+<p className="section-description">
+Experiencia combinada de más de 20 años en transformación empresarial
+</p>
+</div>
+
+<div className="team-grid">
+{team.map((member, index) => (
+<div key={index} className="team-member">
+<img src={member.image} alt={member.name} className="team-avatar" />
+<h3>{member.name}</h3>
+<div className="team-role">{member.role}</div>
+<p className="team-bio">{member.bio}</p>
+<div className="social-links">
+{member.social.linkedin && (
+<a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+<i className="fab fa-linkedin-in"></i>
+</a>
+)}
+{member.social.instagram && (
+<a href={member.social.instagram} target="_blank" rel="noopener noreferrer">
+<i className="fab fa-instagram"></i>
+</a>
+)}
+{member.social.twitter && (
+<a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+<i className="fab fa-x-twitter"></i>
+</a>
+)}
+{member.social.telegram && (
+<a href={member.social.telegram} target="_blank" rel="noopener noreferrer">
+<i className="fab fa-telegram"></i>
+</a>
+)}
+</div>
+</div>
+))}
+</div>
+</section>
+);
+};
+
+const Footer = () => {
+const scrollToSection = (sectionId) => {
+const element = document.querySelector(sectionId);
+if (element) {
+element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+};
+
+return (
+<footer id="contacto">
+<div className="footer-content">
+<div className="footer-brand">
+<img src="https://i.imgur.com/WhmuuWF.png" alt="Ant-Ara" className="footer-logo" />
+<p>
+Estrategia con Alma, Resultados con Disciplina.<br />
+Transformando PYMEs guatemaltecas desde 2024.
+</p>
+</div>
+
+<div className="footer-section">
+<h4>Navegación</h4>
+<div className="footer-links">
+<a onClick={() => scrollToSection('#casos')}>Casos de Éxito</a>
+<a onClick={() => scrollToSection('#servicios')}>Servicios</a>
+<a href="programas.html">Programas</a>
+<a onClick={() => scrollToSection('#equipo')}>Equipo</a>
+</div>
+</div>
+
+<div className="footer-section">
+<h4>Programas</h4>
+<div className="footer-links">
+<a href="champion-ia.html">Champion IA</a>
+<a href="programas.html">Ver todos</a>
+</div>
+</div>
+
+<div className="footer-section">
+<h4>Contacto</h4>
+<div className="footer-contact">
+<a href="mailto:contacto@ant-ara.com">
+<i className="fas fa-envelope"></i>
+contacto@ant-ara.com
+</a>
+<a href="mailto:alejandroortegaguerra@gmail.com">
+<i className="fas fa-envelope"></i>
+alejandroortegaguerra@gmail.com
+</a>
+<a href="https://t.me/ant_ara_productividad" target="_blank" rel="noopener noreferrer">
+<i className="fab fa-telegram"></i>
+@productividadconia
+</a>
+</div>
+</div>
+</div>
+
+<div className="footer-bottom">
+<p>© 2025 Ant-Ara. Todos los derechos reservados. | Diseñado con Alma y Disciplina</p>
+</div>
+</footer>
+);
+};
+
+// ========== MAIN APP ==========
+const App = () => {
+return (
+<>
+<Header />
+<Hero />
+<StatsBar stats={SITE_DATA.stats} />
+<CasesSection cases={SITE_DATA.cases} />
+<ServicesSection services={SITE_DATA.services} />
+<ChampionCTA />
+<TeamSection team={SITE_DATA.team} />
+<Footer />
+</>
+);
+};
+
+// ========== RENDER ==========
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+
+</body>
+</html>
