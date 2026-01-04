@@ -32,10 +32,38 @@ const AntAraApp = () => {
 
   // Logos
   const logos = {
-    icon: "https://i.imgur.com/007URKU.png",        // Isotipo
-    full: "https://i.imgur.com/WhmuuWF.png",        // Logo completo
-    iconDark: "https://i.imgur.com/y2G8EWA.png"     // Isotipo dark mode
+    icon: "https://i.imgur.com/y2G8EWA.png",        // Isotipo con fondo negro
+    full: "https://i.imgur.com/y2G8EWA.png",        // Logo (fondo negro)
+    favicon: "https://i.imgur.com/oD63qAo.jpeg"     // Favicon
   };
+
+  // SVG Ant Icon con forma de microchip
+  const AntChipIcon = ({ size = 24, className = "" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      {/* Microchip outline */}
+      <rect x="6" y="6" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+      {/* Chip pins */}
+      <line x1="2" y1="8" x2="6" y2="8" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="2" y1="12" x2="6" y2="12" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="2" y1="16" x2="6" y2="16" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="18" y1="8" x2="22" y2="8" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="18" y1="12" x2="22" y2="12" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="18" y1="16" x2="22" y2="16" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="8" y1="18" x2="8" y2="22" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" strokeWidth="1.5"/>
+      <line x1="16" y1="18" x2="16" y2="22" stroke="currentColor" strokeWidth="1.5"/>
+      {/* Ant body inside chip */}
+      <circle cx="12" cy="10" r="1.5" fill="currentColor"/> {/* head */}
+      <ellipse cx="12" cy="13.5" rx="2" ry="2.5" fill="currentColor"/> {/* body */}
+      <circle cx="12" cy="16.5" r="1" fill="currentColor"/> {/* abdomen */}
+      {/* Ant antennae */}
+      <path d="M 11 9 Q 10 7 9 7" stroke="currentColor" strokeWidth="1" fill="none"/>
+      <path d="M 13 9 Q 14 7 15 7" stroke="currentColor" strokeWidth="1" fill="none"/>
+    </svg>
+  );
 
   // Casos de Éxito REALES
   const casosExito = [
@@ -44,7 +72,7 @@ const AntAraApp = () => {
       category: "Transformación Digital",
       metric: "40% Reducción de Costos",
       description: "Ecosistema digital completo: cotizador automático en línea, asistente virtual 24/7 con IA, y sistema de autogestión para clientes. Integración WhatsApp, web y backend.",
-      image: "https://i.imgur.com/RHwlADm.png",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", // Dashboard analytics
       tags: ["#IA", "#Automatización", "#24/7"],
       link: "https://tolivia.com"
     },
@@ -53,7 +81,7 @@ const AntAraApp = () => {
       category: "Aceleración Comercial",
       metric: "65% Más Leads",
       description: "Arquitectura comercial completa con KPIs digitales, funnel de conversión optimizado, y paquete de 36 publicaciones estratégicas en 3 meses.",
-      image: "https://i.imgur.com/aUW3ozt.png",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80", // Marketing graphs
       tags: ["#Marketing", "#Ventas", "#KPIs"],
       link: "https://dkorando.com"
     },
@@ -62,9 +90,43 @@ const AntAraApp = () => {
       category: "Project Management",
       metric: "50% Menos Tiempo",
       description: "Sistema de gestión de proyectos para eventos corporativos. Automatización de cotizaciones, diseño de experiencias personalizadas, y tracking en tiempo real.",
-      image: "https://i.imgur.com/lLFSaXf.png",
+      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80", // Team collaboration/events
       tags: ["#Eventos", "#Gestión", "#Automatización"],
       link: "#contacto"
+    }
+  ];
+
+  // Metodología Ant-Ara
+  const metodologia = [
+    {
+      title: "Ant-Ara",
+      description: "Nuestra filosofía de trabajo inspirada en la disciplina de las hormigas",
+      image: "https://i.imgur.com/Q1recPP.png",
+      icon: Target
+    },
+    {
+      title: "Fundamentos",
+      description: "Bases sólidas de nuestro trabajo estratégico",
+      image: "https://i.imgur.com/hXeaifK.png",
+      icon: Shield
+    },
+    {
+      title: "Innovación Aplicada",
+      description: "Tecnología e innovación con propósito real",
+      image: "https://i.imgur.com/qWKoDqe.png",
+      icon: Rocket
+    },
+    {
+      title: "Atención al Detalle",
+      description: "Cada elemento importa en la ejecución",
+      image: "https://i.imgur.com/OKkdZfY.png",
+      icon: Sparkles
+    },
+    {
+      title: "Colaboración Transparente",
+      description: "Trabajo en equipo con comunicación abierta",
+      image: "https://i.imgur.com/TsmNYo2.png",
+      icon: Users
     }
   ];
 
@@ -438,6 +500,58 @@ const AntAraApp = () => {
             </div>
           </section>
 
+          {/* Metodología Ant-Ara */}
+          <section className="py-20 px-6 max-w-7xl mx-auto bg-gradient-to-b from-transparent via-teal-950/10 to-transparent">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-2 rounded-full bg-teal-500/10 text-teal-400 text-[10px] font-black uppercase tracking-widest mb-4">
+                Nuestra Metodología
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black font-epilogue mb-4">
+                Cómo Trabajamos en <span className="text-teal-400">Ant-Ara</span>
+              </h2>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                Disciplina, innovación y trabajo en equipo. Los principios que nos guían en cada proyecto.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {metodologia.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div key={idx} className="group relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal-500/20 via-green-500/10 to-orange-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative bg-slate-900/50 border border-white/5 rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all duration-500">
+                      {/* Card Image */}
+                      <div className="relative h-64 overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
+
+                        {/* Icon Overlay */}
+                        <div className="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center">
+                          <Icon size={24} className="text-white" />
+                        </div>
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="p-6">
+                        <h3 className="text-2xl font-black mb-3 font-epilogue text-white group-hover:text-teal-400 transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-slate-400 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
           {/* Champion IA CTA */}
           <section className="py-20 px-6 max-w-7xl mx-auto">
             <div className="relative bg-gradient-to-br from-orange-900/40 via-slate-900/60 to-teal-900/40 border-2 border-orange-500/30 rounded-[3rem] overflow-hidden p-12">
@@ -655,11 +769,11 @@ const AntAraApp = () => {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-xl backdrop-blur-sm">
-                  <MessageSquare size={20} className="text-white"/>
+                  <AntChipIcon size={24} className="text-white"/>
                 </div>
                 <div>
-                  <div className="font-black text-white text-sm">Anti 🐜</div>
-                  <div className="text-[10px] text-white/80 font-bold">Asistente Estratégico</div>
+                  <div className="font-black text-white text-sm">Anti</div>
+                  <div className="text-[10px] text-white/80 font-bold">Asistente Estratégico IA</div>
                 </div>
               </div>
               <button onClick={() => setShowAnti(false)} className="text-white/60 hover:text-white p-2">
@@ -729,7 +843,7 @@ const AntAraApp = () => {
           onClick={() => setShowAnti(true)}
           className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-green-500/40 hover:scale-110 active:scale-95 transition-all z-[90]"
         >
-          <MessageSquare size={28}/>
+          <AntChipIcon size={32} className="text-white"/>
         </button>
       )}
 
